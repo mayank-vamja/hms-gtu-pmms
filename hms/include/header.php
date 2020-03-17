@@ -30,10 +30,10 @@
   <!-- end: NAVBAR HEADER -->
   <!-- start: NAVBAR COLLAPSE -->
   <div class="navbar-collapse collapse">
-    <h2>HMS </h2>
+    <!-- <h2>HMS </h2> -->
     <ul class="nav navbar-right">
       <!-- start: MESSAGES DROPDOWN -->
-      <li class="nav-item mr-auto fa-2x" style="padding-top:5%;">
+      <li class="nav-item mr-auto fa-2x" style="padding-top:8%;">
         <span onclick="showNotifications()"><i class="fa fa-bell"></i></span>
         <?php if($notificationCount > 0) echo "<span class='badge badge-pill badge-danger'>".$notificationCount."</span>" ?>
       </li>
@@ -52,7 +52,7 @@ while($row=mysqli_fetch_array($query))
 }
 									?> <i class="ti-angle-down"></i></i></span>
         </a>
-        <ul class="dropdown-menu dropdown-dark">
+        <ul class="dropdown-menu dropdown-light">
           <li>
             <a href="edit-profile.php">
               My Profile

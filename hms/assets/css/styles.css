@@ -41,14 +41,16 @@
 38 - Popovers
 39 - Date Picker
 /* ---------------------------------------------------------------------- */
-/*
-
-
-
-*/
-/* ---------------------------------------------------------------------- */
 /*  Basic Elements & Classes
 /* ---------------------------------------------------------------------- */
+@font-face {
+  font-family: Gilroy;
+  src: url("/hospital/assets/fonts/Gilroy-Regular.woff2");
+}
+
+body {
+  font-family: Gilroy !important;
+}
 html,
 body {
   height: 100%;
@@ -64,7 +66,6 @@ body {
   direction: ltr;
   overflow-x: hidden;
   height: 100%;
-  font-family: Helvetica, Arial, sans-serif;
   font-size: 13px;
   padding: 0;
   margin: 0;
@@ -123,13 +124,13 @@ a:active {
 
 h1,
 h2 {
-  font-family: "Raleway", sans-serif;
+  font-family: Gilroy !important;
 }
 
 h3,
 h4,
 h5 {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Gilroy !important;
 }
 
 h1,
@@ -159,7 +160,7 @@ h5 .text-bold {
 }
 
 h5.over-title {
-  font-family: "Lato", sans-serif;
+  font-family: Gilroy !important;
   font-size: 16px;
 }
 
@@ -445,7 +446,7 @@ h5.over-title {
 }
 .navbar .navbar-header {
   z-index: 10;
-  background: #6b2c91;
+  background: #322e46;
   color: white;
   border-bottom: 1px solid #c8c7cc;
   position: relative;
@@ -505,7 +506,7 @@ h5.over-title {
 .navbar .navbar-collapse {
   border-bottom: 1px solid #c8c7cc;
   border-top: none;
-  background: #6b2c91;
+  background: #322e46;
   padding-left: 15px !important;
   padding-right: 15px !important;
   position: relative;
@@ -4862,7 +4863,7 @@ fieldset .form-group {
 }
 fieldset legend {
   background: inherit;
-  font-family: "Lato", sans-serif;
+  font-family: Gilroy !important;
   color: #6b2c91;
   font-size: 15px;
   left: 10px;
@@ -4913,7 +4914,7 @@ input[type="color"] {
   border: 1px solid #c8c7cc;
   border-radius: 0 0 0 0 !important;
   color: #5b5b60;
-  font-family: inherit;
+  font-family: Gilroy !important;
   font-size: 14px;
   line-height: 1.2;
   padding: 5px 4px;
@@ -4988,7 +4989,7 @@ input[type="color"].underline {
   border-right: none;
   border-radius: 0 0 0 0 !important;
   color: #5b5b60;
-  font-family: inherit;
+  font-family: Gilroy !important;
   font-size: 14px;
   line-height: 1.2;
   padding: 5px 4px;
@@ -5651,7 +5652,7 @@ div.cs-skin-slide::before {
 .cs-select [class*=" ti-"] span,
 .cs-select [class^="fa-"] span,
 .cs-select [class*=" fa-"] span {
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Gilroy !important;
   padding-left: 30px !important;
 }
 .cs-select [class^="ti-"]:before,
@@ -9448,7 +9449,7 @@ fieldset[disabled] .btn-transparent-red.active {
   color: #6b2c91;
   cursor: pointer;
   display: block;
-  font-family: inherit;
+  font-family: Gilroy !important;
   font-size: 14px;
   height: 29px;
   line-height: 27px;
@@ -9714,7 +9715,7 @@ Social Icons
 .btn-scroll {
   position: relative;
   overflow: hidden;
-  font-family: Helvetica, Arial, sans-serif !important;
+  font-family: Gilroy !important;
   line-height: inherit !important;
   -moz-transition: all 0.3s ease 0s;
   -o-transition: all 0.3s ease 0s;
@@ -11016,7 +11017,7 @@ nav.links a {
 
 .lock-screen .user-info h4 {
   color: #666666;
-  font-family: "Raleway", sans-serif;
+  font-family: Gilroy !important;
   font-weight: 300;
   margin-top: 0;
 }
@@ -11056,7 +11057,7 @@ nav.links a {
 }
 
 .invoice h4 {
-  font-family: "Open Sans", sans-serif;
+  font-family: Gilroy !important;
   font-weight: 300 !important;
 }
 
@@ -11942,7 +11943,7 @@ td.small-width {
   border: 1px solid #c8c7cc;
   border-radius: 5px;
   box-shadow: none;
-  font-family: inherit;
+  font-family: Gilroy !important;
   height: 28px;
   line-height: 20px;
   margin: 8px 0;
@@ -12837,7 +12838,7 @@ td.small-width {
   line-height: 1;
   margin: 0;
   padding: 0;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
 }
 @media (max-width: 767px) {
   #page-title h1 {
@@ -12845,7 +12846,7 @@ td.small-width {
   }
 }
 #page-title .mainDescription {
-  font-family: "Lato", sans-serif;
+  font-family: Gilroy !important;
   color: #777;
   display: block;
   font-size: 18px;
@@ -12867,7 +12868,7 @@ td.small-width {
   right: 30px !important;
   top: 50% !important;
   width: auto !important;
-  font-family: "Lato", sans-serif;
+  font-family: Gilroy !important;
 }
 @media (max-width: 767px) {
   #page-title .breadcrumb {
@@ -13020,5 +13021,123 @@ td.small-width {
   color: #ffffff !important;
 }
 .StepTitle {
+  font-size: 24px !important;
+}
+.panel-sm {
+  width: 100%;
+  max-width: 550px;
+  margin: 20px auto;
+  background-color: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+  text-align: center;
+  padding-bottom: 15px;
+}
+.profile-top {
+  overflow: hidden;
+  padding-top: 20px;
+  padding-bottom: 50px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background-image:radial-gradient(at top left,#7033ff 36%,#A962FF 67%, transparent 67.5%);
+  background-size:120% 100%;
+  background-repeat:no-repeat;
+}
+.top-right-button {
+  height: 80px;
+  width: 100px;
+  position: relative;
+  float: right;
+  top: -18px;
+  right: 2px;
+  border: none;
+  padding: 5px 5px 20px 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 100%;
+  color: #7033ff;
+}
+.profile-body {
+  padding: 15px;
+}
+.profile-name {
+  width: 100%;
+  font-size: 28px;
+  color: #000;
+  margin: 10px auto;
+  /* border-radius: 50%; */
+  /* border-top: 1px solid #ddd; */
+  /* border-bottom: 10px solid #ddd; */
+}
+.profile_pic {
+  width: 100px;
+  height: 100px;
+  overflow: hidden;
+  border-radius: 50%;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  margin: 0 auto;
+}
+.profile_pic img {
+  width: 100px;
+  height: 100px;
+}
+.profile-imp-green {
+  overflow: hidden;
+  border-radius: 8px;
+  width: fit-content;
+  margin: auto;
+  border: 1px solid #00E4DF;
+}
+.green-heading {
+  padding: 10px 20px;
+  font-size: 14px;
+  color: #444;
+  background-color: #20F4FF;
+}
+.green-body {
+  padding: 2px 20px;
   font-size: 20px;
+  color: black;
+}
+.profile-badge-iconic {
+  margin: 5px;
+  vertical-align: middle;
+}
+.badge-icon-circle {
+  overflow: hidden !important;
+}
+.profile-badge-iconic span i {
+  border-radius: 50%;
+  padding: 10px;
+  width: 48px !important;
+  height: 48px !important;
+  color: white;
+  z-index: 99 !important;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+}
+.bg-cyan {
+  background-color: #00C987;
+}
+.border-cyan {
+  border: 2px solid #00C987;
+}
+.bg-pinky {
+  background-color: #FF597E;
+}
+.border-pinky {
+  border: 2px solid #FF597E;
+}
+.badge-profile {
+  height: 20px;
+  color: #333;
+  padding: 5px 5px 5px 15px;
+  position: relative;
+  left: -20px;
+  top: -4px;
+  vertical-align: middle;
+  border-radius: 20px;
+  z-index: 1 !important;
+}
+.float-left {
+  float: left;
+  text-align: start;
 }

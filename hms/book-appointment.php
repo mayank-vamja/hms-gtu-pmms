@@ -4,6 +4,8 @@ session_start();
 include('include/config.php');
 include('include/checklogin.php');
 check_login();
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
 
 if(isset($_POST['submit']))
 {
@@ -22,7 +24,40 @@ $query=mysqli_query($con,"insert into appointment(doctorSpecialization,doctorId,
 		$link = "./appointment-history.php";
 		$query_notification = mysqli_query($con,"insert into notification(userId,doctorId,message,link) values('$userid','$doctorid','$message','$link')");
 		if($query_notification) {
-			// echo "<script>alert('Your appointment successfully booked')</script>";
+      // echo "<script>alert('Your appointment successfully booked')</script>";
+      require('../vendor/autoload.php');
+      require '../vendor/credential.php';
+			// require '../vendor/phpmailer/phpmailer';
+
+			$mail = new PHPMailer;
+      
+			$mail->isSMTP();                                      // Set mailer to use SMTP
+			// $mail->SMTPDebug = SMTP::DEBUG_SERVER;                               // Enable verbose debug output
+
+			$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+      $mail->Port = 465;          //587                           // TCP port to connect to
+      // $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+			$mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+			$mail->SMTPAuth = true;                               // Enable SMTP authentication
+			$mail->Username = EMAIL;                 // SMTP username
+			$mail->Password = PASS;                           // SMTP password
+
+			$mail->setFrom(EMAIL, 'Hospital Management System');
+			$mail->addAddress('mnkvmj@gmail.com');     // Add a recipient
+
+			$mail->isHTML(true);                                  // Set email format to HTML
+
+			$mail->Subject = 'Your appointment successfully booked';
+			$mail->Body    = '<div>Dear Patient,<br /> <b>Your appointment has been booked successfully!</b><br /> <p> Dont forget to visit on time.</p></div>';
+			$mail->AltBody ='Your appointment has been booked successfully';
+
+			if(!$mail->send()) {
+			    echo 'Message could not be sent. AN ERROR HAS OCCORED!!';
+			    echo 'Mailer Error: ' . $mail->ErrorInfo;
+			} else {
+			    // echo 'Message has been sent';
+			}
+		
 		}
 		else {
 			$error = mysqli_error($con);
