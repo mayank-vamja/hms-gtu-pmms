@@ -1,11 +1,10 @@
 <?php
-if(isset($_GET['del']))
-		  {
-		          mysqli_query($con,"delete from doctors where id = '".$_GET['id']."'");
-                  $_SESSION['msg']="data deleted !!";
-		  }
+if (isset($_GET['del'])) {
+  mysqli_query($con, "delete from doctors where id = '" . $_GET['id'] . "'");
+  $_SESSION['msg'] = "data deleted !!";
+}
 ?>
-<?php include('include/header.php');?>
+<?php include('include/header.php'); ?>
 
 <!-- end: TOP NAVBAR -->
 <div class="main-content">
@@ -14,7 +13,7 @@ if(isset($_GET['del']))
     <section id="page-title">
       <div class="row">
         <div class="col-sm-8">
-          <h1 class="mainTitle">Admin | Manage Read Queries</h1>
+          <h1 class="mainTitle">Admin > Manage Read Queries</h1>
         </div>
         <ol class="breadcrumb">
           <li>
@@ -48,54 +47,26 @@ if(isset($_GET['del']))
             </thead>
             <tbody>
               <?php
-$sql=mysqli_query($con,"select * from tblcontactus where IsRead is not null");
-$cnt=1;
-while($row=mysqli_fetch_array($sql))
-{
-?>
+              $sql = mysqli_query($con, "select * from tblcontactus where IsRead is not null");
+              $cnt = 1;
+              while ($row = mysqli_fetch_array($sql)) {
+              ?>
 
-              <tr>
-                <td class="center"><?php echo $cnt;?>.</td>
-                <td class="hidden-xs"><?php echo $row['fullname'];?></td>
-                <td><?php echo $row['email'];?></td>
-                <td><?php echo $row['contactno'];?></td>
-                <td><?php echo $row['message'];?></td>
+                <tr>
+                  <td class="center"><?php echo $cnt; ?>.</td>
+                  <td class="hidden-xs"><?php echo $row['fullname']; ?></td>
+                  <td><?php echo $row['email']; ?></td>
+                  <td><?php echo $row['contactno']; ?></td>
+                  <td><?php echo $row['message']; ?></td>
 
-                <td>
-                  <div class="visible-md visible-lg hidden-sm hidden-xs">
-                    <a href="query-details.php?id=<?php echo $row['id'];?>" class="btn btn-transparent btn-lg"
-                      title="View Details"><i class="fa fa-file"></i></a>
-                  </div>
-                  <div class="visible-xs visible-sm hidden-md hidden-lg">
-                    <div class="btn-group" dropdown is-open="status.isopen">
-                      <button type="button" class="btn btn-primary btn-o btn-sm dropdown-toggle" dropdown-toggle>
-                        <i class="fa fa-cog"></i>&nbsp;<span class="caret"></span>
-                      </button>
-                      <ul class="dropdown-menu pull-right dropdown-light" role="menu">
-                        <li>
-                          <a href="#">
-                            Edit
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            Share
-                          </a>
-                        </li>
-                        <li>
-                          <a href="#">
-                            Remove
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </td>
-              </tr>
+                  <td>
+                    <a href="query-details.php?id=<?php echo $row['id']; ?>" class="btn btn-transparent btn-lg" title="View Details"><i class="fa fa-file"></i></a>
+                  </td>
+                </tr>
 
-              <?php 
-$cnt=$cnt+1;
-											 }?>
+              <?php
+                $cnt = $cnt + 1;
+              } ?>
 
 
             </tbody>
@@ -106,5 +77,5 @@ $cnt=$cnt+1;
   </div>
 </div>
 <!-- start: FOOTER -->
-<?php include('include/footer.php');?>
+<?php include('include/footer.php'); ?>
 <!-- end: FOOTER -->

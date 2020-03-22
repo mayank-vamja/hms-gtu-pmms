@@ -18,7 +18,7 @@
 <html lang="en">
 
 <head>
-  <title>Doctor | Dashboard</title>
+  <title>Doctor > Dashboard</title>
 
   <!-- LODASH & D3 & GOOGLE_CHARTS LIBRARY : TODO CHANGE WITH vendor/... 
       AND Install via Composer 
@@ -52,7 +52,7 @@
     <?php include('include/sidebar.php');?>
     <div class="app-content">
       <header class="navbar navbar-default navbar-static-top">
-        <!-- start: NAVBAR HEADER -->
+        
         <div class="navbar-header">
           <a href="#" class="sidebar-mobile-toggler pull-left hidden-md hidden-lg" class="btn btn-navbar sidebar-toggle"
             data-toggle-class="app-slide-off" data-toggle-target="#app" data-toggle-click-outside="#sidebar">
@@ -71,8 +71,8 @@
             <i class="ti-view-grid"></i>
           </a>
         </div>
-        <!-- end: NAVBAR HEADER -->
-        <!-- start: NAVBAR COLLAPSE -->
+        
+        
         <div class="navbar-collapse collapse">
           <a class="navbar-brand" href="#">
             <h2>HMS </h2>

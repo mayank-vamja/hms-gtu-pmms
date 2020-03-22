@@ -5,7 +5,7 @@
     <section id="page-title">
       <div class="row">
         <div class="col-sm-8">
-          <h1 class="mainTitle">Admin | View Patients</h1>
+          <h1 class="mainTitle">Admin > View Patients</h1>
         </div>
         <ol class="breadcrumb">
           <li>

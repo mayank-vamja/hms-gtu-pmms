@@ -4,32 +4,25 @@ session_start();
 include('include/config.php');
 include('include/checklogin.php');
 check_login();
-if(isset($_POST['submit']))
-{
-	$fname=$_POST['fname'];
-$address=$_POST['address'];
-$city=$_POST['city'];
-$gender=$_POST['gender'];
+if (isset($_POST['submit'])) {
+  $fname = $_POST['fname'];
+  $address = $_POST['address'];
+  $city = $_POST['city'];
+  $gender = $_POST['gender'];
 
-$sql=mysqli_query($con,"Update users set fullName='$fname',address='$address',city='$city',gender='$gender' where id='".$_SESSION['id']."'");
-if($sql)
-{
-$msg="Your Profile updated Successfully";
-
-
-}
-
+  $sql = mysqli_query($con, "Update users set fullName='$fname',address='$address',city='$city',gender='$gender' where id='" . $_SESSION['id'] . "'");
+  if ($sql) {
+    $msg = "Your Profile updated Successfully";
+  }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <title>User | Profile</title>
+  <title>User > Profile</title>
 
-  <link
-    href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic"
-    rel="stylesheet" type="text/css" />
+  <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="vendor/fontawesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="vendor/themify-icons/themify-icons.min.css">
@@ -49,10 +42,10 @@ $msg="Your Profile updated Successfully";
 
 <body>
   <div id="app">
-    <?php include('include/sidebar.php');?>
+    <?php include('include/sidebar.php'); ?>
     <div class="app-content">
 
-      <?php include('include/header.php');?>
+      <?php include('include/header.php'); ?>
 
       <!-- end: TOP NAVBAR -->
       <div class="main-content">
@@ -61,7 +54,7 @@ $msg="Your Profile updated Successfully";
           <section id="page-title">
             <div class="row">
               <div class="col-sm-8">
-                <h1 class="mainTitle">User | Profile</h1>
+                <h1 class="mainTitle">User > Profile</h1>
               </div>
               <ol class="breadcrumb">
                 <li>
@@ -77,50 +70,44 @@ $msg="Your Profile updated Successfully";
           <!-- start: BASIC EXAMPLE -->
           <div id="profile" class="">
             <div class="panel panel-sm">
-              <?php $sql=mysqli_query($con,"select * from users where id='".$_SESSION['id']."'");
-        while($data=mysqli_fetch_array($sql))
-        {
-      ?>
-              <div class="profile-top">
-                <button class="btn top-right-button" onclick="editProfile()">
-                  <i class="fa fa-pencil fa-3x"></i>
-                </button>
-                <div class="profile_pic">
-                  <?php if($data['gender'] == 'female') { ?>
-                  <img src="./assets/images/female-patient-dp.jpg">
-                  <?php } else { ?>
-                  <img src="./assets/images/patient_dp.png">
-                  <?php } ?>
-                </div>
-                <div class="profile-name"><?php echo htmlentities($data['fullName']);?></div>
-              </div>
-              <div class="profile-body">
-
-                <div class="row">
-                  <div class="col-sm-6 float-left">
-                    <h4><span class="label label-default bg-primary margin-left-15"><i
-                          class="fa fa-map-marker margin-right-5"></i><?php echo htmlentities($data['city']);?></span>
-                    </h4>
-                    <!-- <div class="profile-badge-iconic">
-              <span><i class="fa fa-phone fa-2x bg-cyan" aria-hidden="true"></i></span>
-              <span class="badge-profile border-cyan"><?php echo htmlentities($data['contactno']);?></span>
-            </div> -->
-                    <div class="profile-badge-iconic">
-                      <span><i class="fa fa-envelope-o fa-2x bg-pinky" aria-hidden="true"></i></span>
-                      <span class="badge-profile border-pinky"><?php echo htmlentities($data['email']);?></span>
-                    </div>
+              <?php $sql = mysqli_query($con, "select * from users where id='" . $_SESSION['id'] . "'");
+              while ($data = mysqli_fetch_array($sql)) {
+              ?>
+                <div class="profile-top">
+                  <button class="btn top-right-button" onclick="editProfile()">
+                    <i class="fa fa-pencil fa-3x"></i>
+                  </button>
+                  <div class="profile_pic">
+                    <?php if ($data['gender'] == 'female') { ?>
+                      <img src="./assets/images/female-patient-dp.jpg">
+                    <?php } else { ?>
+                      <img src="./assets/images/patient_dp.png">
+                    <?php } ?>
                   </div>
-                  <div class="col-sm-6">
-                    <div class="profile-imp-green">
-                      <div class="green-heading">Address</div>
-                      <div class="green-body">
-                        <p><?php echo htmlentities($data['address']);?></p>
+                  <div class="profile-name"><?php echo htmlentities($data['fullName']); ?></div>
+                </div>
+                <div class="profile-body">
+
+                  <div class="row">
+                    <div class="col-sm-6 float-left">
+                      <h4><span class="label label-default bg-primary margin-left-15"><i class="fa fa-map-marker margin-right-5"></i><?php echo htmlentities($data['city']); ?></span>
+                      </h4>
+                      <div class="profile-badge-iconic">
+                        <span><i class="fa fa-envelope-o fa-2x bg-pinky" aria-hidden="true"></i></span>
+                        <span class="badge-profile border-pinky"><?php echo htmlentities($data['email']); ?></span>
+                      </div>
+                    </div>
+                    <div class="col-sm-6">
+                      <div class="profile-imp-green">
+                        <div class="green-heading">Address</div>
+                        <div class="green-body">
+                          <p><?php echo htmlentities($data['address']); ?></p>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
                 <?php } ?>
-              </div>
+                </div>
             </div>
           </div>
 
@@ -128,7 +115,9 @@ $msg="Your Profile updated Successfully";
             <div class="row">
               <div class="col-md-12">
                 <h5 style="color: green; font-size:18px; ">
-                  <?php if($msg) { echo htmlentities($msg);}?> </h5>
+                  <?php if ($msg) {
+                    echo htmlentities($msg);
+                  } ?> </h5>
                 <div class="row margin-top-30">
                   <div class="col-lg-8 col-md-12">
                     <div class="panel panel-white">
@@ -136,81 +125,69 @@ $msg="Your Profile updated Successfully";
                         <h5 class="panel-title">Edit Profile</h5>
                       </div>
                       <div class="panel-body">
-                        <?php 
-												$sql=mysqli_query($con,"select * from users where id='".$_SESSION['id']."'");
-												while($data=mysqli_fetch_array($sql))
-												{
-												?>
-                        <h4><?php echo htmlentities($data['fullName']);?>'s Profile</h4>
-                        <p><b>Profile Reg. Date: </b><?php echo htmlentities($data['regDate']);?></p>
-                        <?php if($data['updationDate']){?>
-                        <p><b>Profile Last Updation Date: </b><?php echo htmlentities($data['updationDate']);?></p>
-                        <?php } ?>
-                        <hr />
-                        <form role="form" name="edit" method="post">
+                        <?php
+                        $sql = mysqli_query($con, "select * from users where id='" . $_SESSION['id'] . "'");
+                        while ($data = mysqli_fetch_array($sql)) {
+                        ?>
+                          <h4><?php echo htmlentities($data['fullName']); ?>'s Profile</h4>
+                          <p><b>Profile Reg. Date: </b><?php echo htmlentities($data['regDate']); ?></p>
+                          <?php if ($data['updationDate']) { ?>
+                            <p><b>Profile Last Updation Date: </b><?php echo htmlentities($data['updationDate']); ?></p>
+                          <?php } ?>
+                          <hr />
+                          <form role="form" name="edit" method="post">
 
 
-                          <div class="form-group">
-                            <label for="fname">
-                              User Name
-                            </label>
-                            <input type="text" name="fname" class="form-control"
-                              value="<?php echo htmlentities($data['fullName']);?>">
-                          </div>
+                            <div class="form-group">
+                              <label for="fname">
+                                User Name
+                              </label>
+                              <input type="text" name="fname" class="form-control" value="<?php echo htmlentities($data['fullName']); ?>">
+                            </div>
 
+                            <div class="form-group">
+                              <label for="address">
+                                Address
+                              </label>
+                              <textarea name="address" class="form-control"><?php echo htmlentities($data['address']); ?></textarea>
+                            </div>
+                            <div class="form-group">
+                              <label for="city">
+                                City
+                              </label>
+                              <input type="text" name="city" class="form-control" required="required" value="<?php echo htmlentities($data['city']); ?>">
+                            </div>
 
-                          <div class="form-group">
-                            <label for="address">
-                              Address
-                            </label>
-                            <textarea name="address"
-                              class="form-control"><?php echo htmlentities($data['address']);?></textarea>
-                          </div>
-                          <div class="form-group">
-                            <label for="city">
-                              City
-                            </label>
-                            <input type="text" name="city" class="form-control" required="required"
-                              value="<?php echo htmlentities($data['city']);?>">
-                          </div>
+                            <div class="form-group">
+                              <label for="gender">
+                                Gender
+                              </label>
 
-                          <div class="form-group">
-                            <label for="gender">
-                              Gender
-                            </label>
+                              <select name="gender" class="form-control" required="required">
+                                <option value="<?php echo htmlentities($data['gender']); ?>">
+                                  <?php echo htmlentities($data['gender']); ?></option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="other">Other</option>
+                              </select>
 
-                            <select name="gender" class="form-control" required="required">
-                              <option value="<?php echo htmlentities($data['gender']);?>">
-                                <?php echo htmlentities($data['gender']);?></option>
-                              <option value="male">Male</option>
-                              <option value="female">Female</option>
-                              <option value="other">Other</option>
-                            </select>
+                            </div>
 
-                          </div>
+                            <div class="form-group">
+                              <label for="fess">
+                                User Email
+                              </label>
+                              <input type="email" name="uemail" class="form-control" readonly="readonly" value="<?php echo htmlentities($data['email']); ?>">
+                              <a href="change-emaild.php">Update your email id</a>
+                            </div>
 
-                          <div class="form-group">
-                            <label for="fess">
-                              User Email
-                            </label>
-                            <input type="email" name="uemail" class="form-control" readonly="readonly"
-                              value="<?php echo htmlentities($data['email']);?>">
-                            <a href="change-emaild.php">Update your email id</a>
-                          </div>
-
-
-
-
-
-
-
-                          <button type="submit" name="submit" class="btn btn-o btn-primary">
-                            Update
-                          </button>
-                          <button type="button" class="btn btn-o btn-danger" onclick="cancelEdit()">
-                            Cancel
-                          </button>
-                        </form>
+                            <button type="submit" name="submit" class="btn btn-o btn-primary">
+                              Update
+                            </button>
+                            <button type="button" class="btn btn-o btn-danger" onclick="cancelEdit()">
+                              Cancel
+                            </button>
+                          </form>
                         <?php } ?>
                       </div>
                     </div>
@@ -227,24 +204,15 @@ $msg="Your Profile updated Successfully";
             </div>
           </div>
 
-          <!-- end: BASIC EXAMPLE -->
-
-
-
-
-
-
-          <!-- end: SELECT BOXES -->
-
         </div>
       </div>
     </div>
     <!-- start: FOOTER -->
-    <?php include('include/footer.php');?>
+    <?php include('include/footer.php'); ?>
     <!-- end: FOOTER -->
 
     <!-- start: SETTINGS -->
-    <?php include('include/setting.php');?>
+    <?php include('include/setting.php'); ?>
 
     <!-- end: SETTINGS -->
   </div>
@@ -271,10 +239,10 @@ $msg="Your Profile updated Successfully";
   <!-- start: JavaScript Event Handlers for this page -->
   <script src="assets/js/form-elements.js"></script>
   <script>
-  jQuery(document).ready(function() {
-    Main.init();
-    FormElements.init();
-  });
+    jQuery(document).ready(function() {
+      Main.init();
+      FormElements.init();
+    });
   </script>
   <!-- end: JavaScript Event Handlers for this page -->
   <!-- end: CLIP-TWO JAVASCRIPTS -->
@@ -283,14 +251,14 @@ $msg="Your Profile updated Successfully";
 </html>
 
 <script>
-function editProfile() {
-  $('#edit-profile').show('slow');
-  $('#profile').hide('slow');
-}
+  function editProfile() {
+    $('#edit-profile').show('slow');
+    $('#profile').hide('slow');
+  }
 
-function cancelEdit() {
-  $('#edit-profile').hide('slow');
-  $('#profile').show('slow');
+  function cancelEdit() {
+    $('#edit-profile').hide('slow');
+    $('#profile').show('slow');
 
-}
+  }
 </script>

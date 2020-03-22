@@ -1,4 +1,4 @@
-<?php include('include/header.php');?>
+<?php include('include/header.php'); ?>
 
 <!-- end: TOP NAVBAR -->
 <div class="main-content">
@@ -9,125 +9,106 @@
         <div class="col-sm-8">
           <h1 class="mainTitle">Admin > Dashboard</h1>
         </div>
-        <ol class="breadcrumb">
+        <!-- <ol class="breadcrumb">
           <li>
             <span>Admin</span>
           </li>
           <li class="active">
             <span>Dashboard</span>
           </li>
-        </ol>
+        </ol> -->
       </div>
     </section>
 
-    <div class="container-fluid container-fullw bg-white">
+    <div class="container-fluid container-fullw">
       <div class="row">
 
-        <div class="row">
-          <div class="panel panel-white text-center">
-            <div class="panel-body d-flex flex-row">
-              <span class="StepTitle">Manage Users</span>
-
-              <p class="links clcl-effect-1">
-                <a href="manage-users.php">
-                  <?php $result = mysqli_query($con,"SELECT * FROM users ");
-                        $num_rows = mysqli_num_rows($result);
-                        {
+        <div class="col-sm-6 col-md-4">
+          <a href="manage-users.php">
+            <div class="panel panel-white text-center fixed-height-card">
+              <div class="panel-body h-card">
+                <span class="StepTitle">Users</span>
+                <?php $result = mysqli_query($con, "SELECT * FROM users ");
+                $num_rows = mysqli_num_rows($result);
+                echo '<h4 class="badge" style="font-size:24px">' . $num_rows . '</h4>';
+                ?>
+              </div>
+              <div class="panel-footer bg-light-grey">
+                <p>Manage User of the system.</p>
+              </div>
+            </div>
+          </a> </div>
+        <div class="col-sm-6 col-md-4">
+          <a href="manage-doctors.php">
+            <div class="panel panel-white text-center fixed-height-card">
+              <div class="panel-body h-card">
+                <span class="StepTitle">Doctors</span>
+                  <?php $result1 = mysqli_query($con, "SELECT * FROM doctors ");
+                  $num_rows1 = mysqli_num_rows($result1);
+                  echo '<h4 class="badge" style="font-size:24px">' . $num_rows1 . '</h4>';
                   ?>
-                  Total Users :<?php echo htmlentities($num_rows);  } ?>
-                </a>
-              </p>
+              </div>
+              <div class="panel-footer bg-light-grey">
+                <p>View and manage doctor profiles and specializations.</p>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
-        <div class="row">
-          <div class="panel panel-white text-center">
-            <div class="panel-body d-flex flex-row">
-              <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i
-                  class="fa fa-users fa-stack-1x fa-inverse"></i> </span>
-              <span class="StepTitle">Manage Doctors</h2>
-
-                <p class="cl-effect-1">
-                  <a href="manage-doctors.php">
-                    <?php $result1 = mysqli_query($con,"SELECT * FROM doctors ");
-$num_rows1 = mysqli_num_rows($result1);
-{
-?>
-                    Total Doctors :<?php echo htmlentities($num_rows1);  } ?>
-                  </a>
-
-                </p>
+        <div class="col-sm-6 col-md-4">
+          <a href="appointment-history.php">
+            <div class="panel panel-white text-center fixed-height-card">
+              <div class="panel-body h-card">
+                <span class="StepTitle" style="display: inline !important;"> Appointments</span>
+                <?php $sql = mysqli_query($con, "SELECT * FROM appointment");
+                $num_rows2 = mysqli_num_rows($sql);
+                echo '<h4 class="badge" style="font-size:24px">' . $num_rows2 . '</h4>';
+                ?>
+              </div>
+              <div class="panel-footer bg-light-grey">
+                <p>View appointment history.</p>
+              </div>
             </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="panel panel-white text-center">
-            <div class="panel-body d-flex flex-row">
-              <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i
-                  class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-              <span class="StepTitle" style="display: inline !important;"> Appointments</span>
-
-              <p class="links cl-effect-1">
-                <a href="book-appointment.php">
-                  <a href="appointment-history.php">
-                    <?php $sql= mysqli_query($con,"SELECT * FROM appointment");
-$num_rows2 = mysqli_num_rows($sql);
-{
-?>
-                    Total Appointments :<?php echo htmlentities($num_rows2);  } ?>
-                  </a>
-                </a>
-              </p>
-            </div>
-          </div>
+          </a>
         </div>
 
-        <div class="row">
-          <div class="panel panel-white text-center">
-            <div class="panel-body d-flex flex-row">
-              <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i
-                  class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span>
-              <span class="StepTitle">Manage Patients</span>
-
-              <p class="links cl-effect-1">
-                <a href="manage-patient.php">
-                  <?php $result = mysqli_query($con,"SELECT * FROM tblpatient ");
-$num_rows = mysqli_num_rows($result);
-{
-?>
-                  Total Patients :<?php echo htmlentities($num_rows);  
-} ?>
-                </a>
-              </p>
+        <div class="col-sm-6 col-md-4">
+          <a href="manage-patient.php">
+            <div class="panel panel-white text-center fixed-height-card">
+              <div class="panel-body h-card">
+                <span class="StepTitle">Patients</span>
+                <?php $result = mysqli_query($con, "SELECT * FROM tblpatient ");
+                $num_rows = mysqli_num_rows($result);
+                echo '<h4 class="badge" style="font-size:24px">' . $num_rows . '</h4>';
+                ?>
+              </div>
+              <div class="panel-footer bg-light-grey">
+                <p>View, manage and edit patient profiles.</p>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
 
-        <div class="row">
-          <div class="panel panel-white no-radius text-center">
-            <div class="panel-body d-flex flex-row">
-              <span class="fa-stack fa-2x"> <i class="ti-files fa-1x text-primary"></i> <i
-                  class="fa fa-terminal fa-stack-1x fa-inverse"></i> </span>
-              <span class="StepTitle"> New Queries</span>
-
-              <p class="links cl-effect-1">
-                <a href="book-appointment.php">
-                  <a href="unread-queries.php">
-                    <?php 
-											$sql= mysqli_query($con,"SELECT * FROM tblcontactus where  IsRead is null");
-											$num_rows22 = mysqli_num_rows($sql);
-										?>
-                    Total New Queries :<?php echo htmlentities($num_rows22);   ?>
-                  </a>
-                </a>
-              </p>
+        <div class="col-sm-6 col-md-4">
+          <a href="unread-queries.php">
+            <div class="panel panel-white text-center fixed-height-card">
+              <div class="panel-body h-card">
+                <span class="StepTitle"> New Queries</span>
+                <?php
+                $sql = mysqli_query($con, "SELECT * FROM tblcontactus where  IsRead is null");
+                $num_rows22 = mysqli_num_rows($sql);
+                echo '<h4 class="badge" style="font-size:24px">' . $num_rows22 . '</h4>';
+                ?>
+              </div>
+              <div class="panel-footer bg-light-grey">
+                <p>Read and respond to queries.</p>
+              </div>
             </div>
-          </div>
+          </a>
         </div>
       </div>
     </div>
   </div>
 </div>
 <!-- start: FOOTER -->
-<?php include('include/footer.php');?>
+<?php include('include/footer.php'); ?>
 <!-- end: FOOTER -->

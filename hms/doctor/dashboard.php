@@ -1,4 +1,4 @@
-<?php include('include/header.php');?>
+<?php include('include/header.php'); ?>
 
 <!-- end: TOP NAVBAR -->
 <div class="main-content">
@@ -7,7 +7,7 @@
     <section id="page-title">
       <div class="row">
         <div class="col-sm-8">
-          <h1 class="mainTitle">Doctor | Dashboard</h1>
+          <h1 class="mainTitle">Doctor > Dashboard</h1>
         </div>
         <ol class="breadcrumb">
           <li>
@@ -19,41 +19,37 @@
         </ol>
       </div>
     </section>
-    <div class="container-fluid container-fullw bg-white">
+    <div class="container-fluid container-fullw">
       <div class="row">
-        <a href="edit-profile.php">
-          <div class="panel panel-white no-radius text-center">
-            <div class="panel-body d-flex flex-row">
-              <!-- <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i
+        <div class="col-sm-6 col-md-4">
+          <a href="edit-profile.php">
+            <div class="panel panel-white text-center fixed-height-card">
+              <div class="panel-body h-card">
+                <!-- <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i
                 class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span> -->
-              <span class="StepTitle">My Profile</span>
-
-              <!-- <p class="links cl-effect-1">
-                Update Profile
-              </p> -->
+                <span class="StepTitle">My Profile</span>
+              </div>
+              <div class="panel-footer bg-light-grey">
+                <p>View and edit your profile.</p>
+              </div>
             </div>
-        </a>
-      </div>
-      <div class="row">
-        <div class="panel panel-white no-radius text-center">
-          <div class="panel-body  d-flex flex-row">
-            <span class="fa-stack fa-2x"> <i class="fa fa-square fa-stack-2x text-primary"></i> <i
-                class="fa fa-paperclip fa-stack-1x fa-inverse"></i> </span>
-            <h2 class="StepTitle">My Appointments</h2>
-
-            <p class="cl-effect-1">
-              <a href="appointment-history.php">
-                View Appointment History
-              </a>
-            </p>
-          </div>
+          </a>
+        </div>
+        <div class="col-sm-6 col-md-4">
+          <a href="appointment-history.php">
+            <div class="panel panel-white text-center fixed-height-card">
+              <div class="panel-body h-card">
+                <h2 class="StepTitle">My Appointments</h2>
+              </div>
+              <div class="panel-footer bg-light-grey">
+                <p>View and manage your appointments which are booked and appointed to you.</p>
+              </div>
+            </div>
+          </a>
         </div>
       </div>
-
     </div>
   </div>
 </div>
-</div>
-</div>
 
-<?php include('include/footer.php');?>
+<?php include('include/footer.php'); ?>

@@ -20,7 +20,7 @@ $msg="Your email updated Successfully";
 <!DOCTYPE html>
 <html lang="en">
 	<head>
-		<title>User | Edit Profile</title>
+		<title>User > Edit Profile</title>
 		
 		<link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
 		<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -53,7 +53,7 @@ $msg="Your email updated Successfully";
 						<section id="page-title">
 							<div class="row">
 								<div class="col-sm-8">
-									<h1 class="mainTitle">User | Edit Profile</h1>
+									<h1 class="mainTitle">User > Edit Profile</h1>
 																	</div>
 								<ol class="breadcrumb">
 									<li>

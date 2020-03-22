@@ -54,27 +54,29 @@ echo "<script>alert('Doctor Details updated Successfully');</script>";
         </div>
         <div class="profile-body">
 
-        <div class="row">
-          <div class="col-sm-6 float-left">
-            <h4><span class="label label-default bg-primary margin-left-15"><i
-              class="fa fa-star margin-right-5"></i><?php echo htmlentities($data['specilization']);?></span></h4>
-            <div class="profile-badge-iconic">
-              <span><i class="fa fa-phone fa-2x bg-cyan" aria-hidden="true"></i></span>
-              <span class="badge-profile border-cyan"><?php echo htmlentities($data['contactno']);?></span>
+          <div class="row">
+            <div class="col-sm-6 float-left">
+              <h4><span class="label label-default bg-primary margin-left-15"><i
+                    class="fa fa-star margin-right-5"></i><?php echo htmlentities($data['specilization']);?></span></h4>
+              <div class="profile-badge-iconic">
+                <span><i class="fa fa-phone fa-2x bg-cyan" aria-hidden="true"></i></span>
+                <span class="badge-profile border-cyan"><?php echo htmlentities($data['contactno']);?></span>
+              </div>
+              <div class="profile-badge-iconic">
+                <span><i class="fa fa-envelope-o fa-2x bg-pinky" aria-hidden="true"></i></span>
+                <span class="badge-profile border-pinky"><?php echo htmlentities($data['docEmail']);?></span>
+              </div>
             </div>
-            <div class="profile-badge-iconic">
-              <span><i class="fa fa-envelope-o fa-2x bg-pinky" aria-hidden="true"></i></span>
-              <span class="badge-profile border-pinky"><?php echo htmlentities($data['docEmail']);?></span>
+            <div class="col-sm-6">
+              <div class="profile-imp-green">
+                <div class="green-heading"><i class="fa fa-inr" aria-hidden="true"></i>Doctor Consultancy Fees</div>
+                <div class="green-body">
+                  <p><?php echo htmlentities($data['docFees']);?></p>
+                </div>
+              </div>
             </div>
           </div>
-          <div class="col-sm-6">
-            <div class="profile-imp-green">
-              <div class="green-heading"><i class="fa fa-inr" aria-hidden="true"></i>Doctor Consultancy Fees</div>
-              <div class="green-body"><p><?php echo htmlentities($data['docFees']);?></p></div>
-            </div>
-          </div>
-        </div>
-        <?php } ?>
+          <?php } ?>
         </div>
       </div>
     </div>
