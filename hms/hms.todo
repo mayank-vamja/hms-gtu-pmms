@@ -1,0 +1,15 @@
+Existing Parts:
+  ☐ UI improvements
+  ☐ Code optimization
+  ✔ Code reducing @done(20-03-22 22:14)
+  ☐ Notifications [Emails] for every situations
+  ☐ Real time notifications [WEB SOCKET (if possible)]
+  ☐ Disease data
+  ☐ Dynamically add diseases
+  ☐ Appointment dashboard for doctor
+  ☐ File Upload when add medical history
+
+New Features:
+  ☐ staff data
+  ☐ prescription functionality
+  ☐ Billing with status
