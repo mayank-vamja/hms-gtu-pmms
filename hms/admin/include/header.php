@@ -1,18 +1,16 @@
 <?php
-  session_start();
-  error_reporting(0);
-  include('include/config.php');
-  include('include/checklogin.php');
-  check_login();
+session_start();
+error_reporting(0);
+include('include/config.php');
+include('include/checklogin.php');
+check_login();
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <title>Admin</title>
-  <link
-    href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic"
-    rel="stylesheet" type="text/css" />
+  <link href="http://fonts.googleapis.com/css?family=Lato:300,400,400italic,600,700|Raleway:300,400,500,600,700|Crete+Round:400italic" rel="stylesheet" type="text/css" />
   <link rel="stylesheet" href="../vendor/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" href="../vendor/fontawesome/css/font-awesome.min.css">
   <link rel="stylesheet" href="../vendor/themify-icons/themify-icons.min.css">
@@ -26,29 +24,31 @@
   <link rel="stylesheet" href="../assets/css/styles.css">
   <link rel="stylesheet" href="../assets/css/plugins.css">
   <link rel="stylesheet" href="../assets/css/themes/theme-1.css" id="skin_color" />
+  <!-- jQuery -->
+  <script id="jQueryScript" src="../vendor/jquery/jquery.min.js"></script>
   <script type="text/javascript">
-  function valid() {
-    if (document.adddoc.npass.value != document.adddoc.cfpass.value) {
-      alert("Password and Confirm Password Field do not match  !!");
-      document.adddoc.cfpass.focus();
-      return false;
+    function valid() {
+      if (document.adddoc.npass.value != document.adddoc.cfpass.value) {
+        alert("Password and Confirm Password Field do not match  !!");
+        document.adddoc.cfpass.focus();
+        return false;
+      }
+      return true;
     }
-    return true;
-  }
 
-  function checkemailAvailability() {
-    $("#loaderIcon").show();
-    jQuery.ajax({
-      url: "check_availability.php",
-      data: 'emailid=' + $("#docemail").val(),
-      type: "POST",
-      success: function(data) {
-        $("#email-availability-status").html(data);
-        $("#loaderIcon").hide();
-      },
-      error: function() {}
-    });
-  }
+    function checkemailAvailability() {
+      $("#loaderIcon").show();
+      jQuery.ajax({
+        url: "check_availability.php",
+        data: 'emailid=' + $("#docemail").val(),
+        type: "POST",
+        success: function(data) {
+          $("#email-availability-status").html(data);
+          $("#loaderIcon").hide();
+        },
+        error: function() {}
+      });
+    }
   </script>
 </head>
 
@@ -57,21 +57,18 @@
     <?php include('include/sidebar.php'); ?>
     <div class="app-content">
       <header class="navbar navbar-default navbar-static-top">
-        
+
         <div class="navbar-header">
-          <a href="#" class="sidebar-mobile-toggler pull-left hidden-md hidden-lg" class="btn btn-navbar sidebar-toggle"
-            data-toggle-class="app-slide-off" data-toggle-target="#app" data-toggle-click-outside="#sidebar">
+          <a href="#" class="sidebar-mobile-toggler pull-left hidden-md hidden-lg" class="btn btn-navbar sidebar-toggle" data-toggle-class="app-slide-off" data-toggle-target="#app" data-toggle-click-outside="#sidebar">
             <i class="ti-align-justify"></i>
           </a>
           <a class="navbar-brand" href="#">
             <h2 style="padding-top:20%; color:#fff ">HMS</h2>
           </a>
-          <a href="#" class="sidebar-toggler pull-right visible-md visible-lg" data-toggle-class="app-sidebar-closed"
-            data-toggle-target="#app">
+          <a href="#" class="sidebar-toggler pull-right visible-md visible-lg" data-toggle-class="app-sidebar-closed" data-toggle-target="#app">
             <i class="ti-align-justify"></i>
           </a>
-          <a class="pull-right menu-toggler visible-xs-block" id="menu-toggler" data-toggle="collapse"
-            href=".navbar-collapse">
+          <a class="pull-right menu-toggler visible-xs-block" id="menu-toggler" data-toggle="collapse" href=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
             <i class="ti-view-grid"></i>
           </a>
