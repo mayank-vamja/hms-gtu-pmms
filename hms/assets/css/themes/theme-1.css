@@ -75,7 +75,7 @@ header .navbar-collapse .navbar-right .dot-badge {
     background: #ebebeb !important;
   } */
   header .navbar-collapse .navbar-right > li > a {
-    color: #777;
+    color: #333;
   }
   header .navbar-collapse .navbar-right > li > a i {
     color: #322e46 !important;
@@ -161,17 +161,17 @@ header .dropdown-off-sidebar {
   color: #322e46 !important;
 }
 #sidebar nav > ul > li > a .item-inner {
-  color: #777 !important;
+  color: #333 !important;
   border-bottom-color: #c8c7cc;
 }
 #sidebar nav > ul > li.hover {
-  background: #f2f2f2 !important;
+  background: rgba(246, 152, 146, 0.3) !important;
 }
 #sidebar nav > ul > li.open {
-  background: #f2f2f2 !important;
+  background: rgba(246, 152, 146, 0.3) !important;
 }
 .no-touch #sidebar nav > ul > li:hover {
-  background: #f2f2f2 !important;
+  background: rgba(246, 152, 146, 0.3) !important;
 }
 #sidebar nav > ul > li.active {
   background: #322e46 !important;
@@ -209,7 +209,7 @@ header .dropdown-off-sidebar {
   background: #f2f2f2 !important;
 }
 #sidebar nav > ul .sub-menu > li a {
-  color: #777;
+  color: #333;
 }
 #sidebar nav > ul .sub-menu > li.active a {
   background: #e0e0e0 !important;
@@ -234,38 +234,38 @@ header .dropdown-off-sidebar {
     border-bottom-color: #c8c7cc !important;
   }
   .app-sidebar-closed .app-aside .search-form > a {
-    color: #777;
+    color: #333;
   }
   .app-sidebar-closed .app-aside .navbar-form {
     background: #dddde8 !important;
   }
   .app-sidebar-closed .app-aside .navbar-form a {
-    color: #777 !important;
+    color: #333 !important;
   }
   .app-sidebar-closed .app-aside .navbar-form .form-group input {
     background: rgba(255, 255, 255, 0.4);
   }
   .app-sidebar-closed .app-aside .navbar-form .form-group input::-webkit-input-placeholder {
     /* WebKit browsers */
-    color: #777;
+    color: #333;
   }
   .app-sidebar-closed .app-aside .navbar-form .form-group input:-moz-placeholder {
     /* Mozilla Firefox 4 to 18 */
-    color: #777;
+    color: #333;
   }
   .app-sidebar-closed .app-aside .navbar-form .form-group input::-moz-placeholder {
     /* Mozilla Firefox 19+ */
-    color: #777;
+    color: #333;
   }
   .app-sidebar-closed .app-aside .navbar-form .form-group input:-ms-input-placeholder {
     /* Internet Explorer 10+ */
-    color: #777;
+    color: #333;
   }
   .app-sidebar-closed .app-aside > .item-inner {
     background: #e6e6e6 !important;
   }
   .app-sidebar-closed .app-aside > .item-inner .title {
-    color: #777 !important;
+    color: #333 !important;
   }
   .app-sidebar-closed .app-aside > .item-inner.active {
     background: #e6e6e6 !important;
@@ -290,7 +290,7 @@ header .dropdown-off-sidebar {
     background: #ffffff;
   }
   .app-sidebar-closed .app-aside .sub-menu li a {
-    color: #777 !important;
+    color: #333 !important;
   }
   .app-sidebar-closed .app-aside .sub-menu li a.hover {
     background: #e6e6e6 !important;
@@ -314,7 +314,7 @@ header .dropdown-off-sidebar {
   background: #dddde8 !important;
 }
 .navbar-form .search-button {
-  color: #777;
+  color: #333;
 }
 .navbar-form .form-control {
   background: transparent !important;
@@ -389,25 +389,25 @@ header .dropdown-off-sidebar {
 }
 #off-sidebar .media-list .media {
   border-color: #c8c7cc;
-  color: #777;
+  color: #333;
 }
 #off-sidebar .media-list .media a:hover {
   background: #e6e6e6;
 }
 #off-sidebar .media-list .media .media-heading {
-  color: #777 !important;
+  color: #333 !important;
 }
 #off-sidebar .media-list .media .media-body span {
   color: #919191;
 }
 #off-sidebar .sidebar-title {
-  color: #777;
+  color: #333;
 }
 #off-sidebar .discussion .messages-date {
-  color: #777;
+  color: #333;
 }
 #off-sidebar .discussion .message-name {
-  color: #777;
+  color: #333;
 }
 #off-sidebar .message-bar {
   background: #e6e6e6;
@@ -421,7 +421,7 @@ header .dropdown-off-sidebar {
   color: #6b2c91;
 }
 #off-sidebar .message-bar a.icon-only {
-  color: #777;
+  color: #333;
 }
 
 .ps-container > .ps-scrollbar-y-rail > .ps-scrollbar-y {
@@ -431,11 +431,5 @@ header .dropdown-off-sidebar {
 #app > footer {
   background: #ffffff !important;
   border-top-color: #c8c7cc !important;
-  color: #777;
-}
-tr:hover {
-  background-color: rgba(246, 152, 146, 0.3) !important;
-}
-.main-navigation-menu li a:hover {
-  background-color: rgba(246, 152, 146, 0.3) !important;
+  color: #333;
 }
