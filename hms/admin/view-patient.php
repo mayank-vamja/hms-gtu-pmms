@@ -18,6 +18,28 @@ if (isset($_POST['submit'])) {
 <?php include('include/header.php'); ?>
 
 <style>
+  #datepickerBox-wrapper {
+    height: 450px;
+    overflow: hidden;
+    margin: auto;
+    border: 1px solid #7033ff;
+    border-radius: 8px;
+  }
+
+  #datepickerBox {
+    width: fit-content;
+    margin: auto;
+    border-radius: 8px;
+    transform: scale(1.4) translateY(10%);
+    padding: 10px;
+  }
+
+  .datepicker {
+    background-color: white;
+    margin: 4px;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  }
+
   #beds {
     display: flex;
     flex-direction: row;
@@ -112,42 +134,57 @@ if (isset($_POST['submit'])) {
                 <td><?php echo $row['CreationDate']; ?></td>
               </tr>
 
-            <?php } ?>
             </table>
-            <?php if (!$row['isAdmit']) { ?>
-              <button class="btn btn-success" data-toggle="modal" data-target="#myModal">Admit Patinet</button>
-            <?php } ?>
             <?php
-            $ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vid'");
-            ?>
-            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
-              <tr align="center">
-                <th colspan="8">Medical History</th>
-              </tr>
-              <tr>
-                <th>#</th>
-                <th>Blood Pressure</th>
-                <th>Weight</th>
-                <th>Blood Sugar</th>
-                <th>Body Temprature</th>
-                <th>Medical Prescription</th>
-                <th>Visit Date</th>
-              </tr>
+            if ($row['isAdmit'] != '1') { ?>
+              <button class="btn btn-success" data-toggle="modal" data-target="#myModal">Admit Patinet</button>
+            <?php } else { ?>
               <?php
-              while ($row = mysqli_fetch_array($ret)) {
-              ?>
-                <tr>
-                  <td><?php echo $cnt; ?></td>
-                  <td><?php echo $row['BloodPressure']; ?></td>
-                  <td><?php echo $row['Weight']; ?></td>
-                  <td><?php echo $row['BloodSugar']; ?></td>
-                  <td><?php echo $row['Temperature']; ?></td>
-                  <td><?php echo $row['MedicalPres']; ?></td>
-                  <td><?php echo $row['CreationDate']; ?></td>
-                </tr>
-              <?php $cnt = $cnt + 1;
-              } ?>
-            </table>
+              $query = mysqli_query($con, "select tbladmits.*,departments.type, departments.name from tbladmits join departments where tbladmits.departmentId = departments.id and tbladmits.userId = '$vid' and tbladmits.discharged = '0'");
+              while ($row = mysqli_fetch_array($query)) { ?>
+                <div class="panel panel-white">
+                  <div class="panel-body">
+                    <h4>Patient admited details:</h4>
+                    <p>Location   : <?php echo '(' . $row['type'] . ') ' . $row['name'] ?></p>
+                    <p>Admited On : <?php echo $row['fromDate'] ?></p>
+                    <p>Last date  : <?php echo $row['toDate'] ?></p>
+                    <p></p>
+                  </div>
+                </div>
+              <?php  } ?>
+            <?php } ?>
+          <?php } ?>
+          <?php
+          $ret = mysqli_query($con, "select * from tblmedicalhistory  where PatientID='$vid'");
+          ?>
+          <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+            <tr align="center">
+              <th colspan="8">Medical History</th>
+            </tr>
+            <tr>
+              <th>#</th>
+              <th>Blood Pressure</th>
+              <th>Weight</th>
+              <th>Blood Sugar</th>
+              <th>Body Temprature</th>
+              <th>Medical Prescription</th>
+              <th>Visit Date</th>
+            </tr>
+            <?php
+            while ($row = mysqli_fetch_array($ret)) {
+            ?>
+              <tr>
+                <td><?php echo $cnt; ?></td>
+                <td><?php echo $row['BloodPressure']; ?></td>
+                <td><?php echo $row['Weight']; ?></td>
+                <td><?php echo $row['BloodSugar']; ?></td>
+                <td><?php echo $row['Temperature']; ?></td>
+                <td><?php echo $row['MedicalPres']; ?></td>
+                <td><?php echo $row['CreationDate']; ?></td>
+              </tr>
+            <?php $cnt = $cnt + 1;
+            } ?>
+          </table>
 
         </div>
       </div>
@@ -166,34 +203,47 @@ if (isset($_POST['submit'])) {
         <h4 class="text-primary text-center"> Admit Patient</h4>
       </div>
       <div class="modal-body">
-        <form role="form">
-          <div class="form-group">
-            <label for="bedNo"> Department </label>
-            <select value="" name="department" class="form-control" onChange="selectDepartment(this.value);" required="required">
-              <option disabled selected value="">Select Department</option>
-              <?php $ret = mysqli_query($con, "select * from departments where type != 'OT'");
-              while ($row = mysqli_fetch_array($ret)) { ?>
-                <option value="<?php echo htmlentities($row['id']); ?>">
-                  <?php echo htmlentities($row['name'] . ' (' . $row['type'] . ')'); ?>
-                </option>
-              <?php } ?>
-            </select>
+        <form id="admitForm" onsubmit="admitPatient(event, this.id)" action="./admit-patient.php" role="form" method="POST">
+          <input type="hidden" name="userId" value="<?php echo $_GET['viewid'] ?>">
+          <input type="hidden" name="admitedBy" value="<?php echo $_SESSION['id'] ?>">
+          <input required type="hidden" name="fromDate" id="fromDate">
+          <input required type="hidden" name="toDate" id="toDate">
+          <div id="admit-group-wrapper">
+            <div class="form-group">
+              <label for="department"> Department </label>
+              <select value="" name="department" class="form-control" onChange="selectDepartment(this.value);" required="required">
+                <option disabled selected value="">Select Department</option>
+                <?php $ret = mysqli_query($con, "select * from departments where type != 'OT'");
+                while ($row = mysqli_fetch_array($ret)) { ?>
+                  <option value="<?php echo htmlentities($row['id']); ?>">
+                    <?php echo htmlentities($row['name'] . ' (' . $row['type'] . ')'); ?>
+                  </option>
+                <?php } ?>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="bedNo"> Bed number </label>
+              <div id="currentBed" style="float: right;" class="custom-badge">N/A</div>
+              <input id="bedNo" required type="hidden" name="bedNo">
+              <p>Select from Available beds
+                <a tabindex="0" data-html="true" data-toggle="popover" data-trigger="hover" data-content="<svg height='10' width='10'><circle cx='5' cy='5' r='5' fill='#7033ff' /></svg> Available<br /><svg height='10' width='10'><circle cx='5' cy='5' r='5' fill='#f69487' /></svg> Occupied">
+                  <i class="fa fa-info-circle"></i>
+                </a>
+              </p>
+              <div style="display:none;" id="beds" data-toggle="popover" data-placement="bottom" data-trigger="manual" data-content="Please select bed!"></div>
+            </div>
           </div>
-          <div class="form-group">
-            <label for="bedNo"> Bed number </label>
-            <div id="currentBed" style="float: right;" class="custom-badge">N/A</div>
-            <p>Select from Available beds
-              <a 
-                tabindex="0" 
-                data-html="true" 
-                data-toggle="popover" 
-                data-trigger="hover" 
-                data-content="<svg height='10' width='10'><circle cx='5' cy='5' r='5' fill='#7033ff' /></svg> Available<br /><svg height='10' width='10'><circle cx='5' cy='5' r='5' fill='#f69487' /></svg> Occupied">
-                <i class="fa fa-info-circle"></i>
-              </a>
-            </p>
-            <div style="display:none;" id="beds"></div>
-            <input disabled required type="number" min="1" class="form-control hidden" name="bedNo" placeholder="Enter Bed Number">
+          <div class="col">
+            <label>Duration for admit</label>
+            <div class="well" onclick="openDateSelector()">
+              <a id="datesText"> Tap here to select</a>
+            </div>
+          </div>
+          <div id="datepickerBox-wrapper" style="display:none;">
+            <div class="bg-light-grey well"> Please select two dates for duration.
+              <i onclick="closeDateSelector()" class="pull-right fa fa-2x fa-minus-circle vertical-align-top text-primary"></i>
+            </div>
+            <div id="datepickerBox"></div>
           </div>
           <div class="center"><button type="submit" class="btn btn-lg btn-primary">Submit</button></div>
         </form>
@@ -203,6 +253,35 @@ if (isset($_POST['submit'])) {
 </div>
 
 <script>
+  var selectedDates = [];
+  $(window).load(() => {
+    $('#datepickerBox').datepicker({
+      multidate: 2,
+      format: 'yyyy-mm-dd',
+      maxViewMode: 0,
+    });
+    $('#datepickerBox').on('changeDate', function() {
+      let from = $('#fromDate').val();
+      let to = $('#toDate').val();
+      let result = $('#datepickerBox').datepicker('getFormattedDate');
+      if (!result || result.trim() == '') {
+        $('#fromDate').val('');
+        $('#toDate').val('');
+      } else {
+        selectedDates = $('#datepickerBox').datepicker('getFormattedDate').split(',');
+        selectedDates.sort((a, b) => new Date(a) - new Date(b));
+
+        selectedDates.length ? $('#fromDate').val(selectedDates[0]) : $('#fromDate').val('');
+        selectedDates.length == 2 ? $('#toDate').val(selectedDates[1]) : $('#toDate').val('');
+      }
+
+      let temp1 = $('#fromDate').val() == '' ? 'Not Selected' : $('#fromDate').val();
+      let temp2 = $('#toDate').val() == '' ? 'Not Selected' : $('#toDate').val();
+      $('#datesText').html(`From : ${temp1} - To : ${temp2}`);
+
+    });
+  });
+
   function selectDepartment(dept) {
     $("#beds").hide(0);
     $.ajax({
@@ -227,16 +306,46 @@ if (isset($_POST['submit'])) {
 
   function selectBed(bed) {
     $("#currentBed").text(bed);
+    $('#bedNo').val(bed);
+    $('#beds').popover('hide');
   }
 
-  function admitPatient(id) {
-
+  function openDateSelector() {
+    $('#admit-group-wrapper').hide('slow');
+    $('#datepickerBox-wrapper').show('slow');
   }
 
-  // $(function() {
-  //   $("[data-toggle=popover]").popover();
-  // });
+  function closeDateSelector() {
+    $('#admit-group-wrapper').show('slow');
+    $('#datepickerBox-wrapper').hide('slow');
+  }
+
+
+  function admitPatient(e, formId) {
+    e.preventDefault();
+    if (!$('#bedNo').val() || $('#bedNo').val() == '') {
+      $('#beds').popover('show');
+      return;
+    } else if (selectedDates.length != 2) {
+
+    }
+    let form = $(`#${formId}`);
+    let url = form.attr('action');
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(),
+      success: function(data) {
+        $('#myModal').modal('hide');
+        console.log(data);
+        if (data != "success") {
+          alert("Unable to admit patient");
+        } else {
+          window.location.reload();
+        }
+      }
+    });
+  }
 </script>
-<!-- start: FOOTER -->
+
 <?php include('include/footer.php'); ?>
-<!-- end: FOOTER -->
