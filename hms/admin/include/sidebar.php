@@ -1,3 +1,9 @@
+<style>
+  .fa-2x {
+    font-size: 1.5em;
+    vertical-align: middle;
+  }
+</style>
 <div class="sidebar app-aside" id="sidebar">
   <div class="sidebar-container perfect-scrollbar">
     <nav>
@@ -9,7 +15,7 @@
           <a href="dashboard.php">
             <div class="item-content">
               <div class="item-media">
-                <i class="ti-home"></i>
+                <i class="fa fa-2x fa-home"></i>
               </div>
               <div class="item-inner">
                 <span class="title"> Dashboard </span>
@@ -21,7 +27,7 @@
           <a href="javascript:void(0)">
             <div class="item-content">
               <div class="item-media">
-                <i class="ti-user"></i>
+                <i class="fa fa-user-md fa-2x"></i>
               </div>
               <div class="item-inner">
                 <span class="title"> Doctors </span><i class="icon-arrow"></i>
@@ -50,7 +56,7 @@
           <a href="javascript:void(0)">
             <div class="item-content">
               <div class="item-media">
-                <i class="ti-user"></i>
+                <i class="fa fa-2x fa-users"></i>
               </div>
               <div class="item-inner">
                 <span class="title"> Users </span><i class="icon-arrow"></i>
@@ -69,7 +75,7 @@
           <a href="javascript:void(0)">
             <div class="item-content">
               <div class="item-media">
-                <i class="ti-user"></i>
+                <i class="fa fa-2x fa-user"></i>
               </div>
               <div class="item-inner">
                 <span class="title"> Patients </span><i class="icon-arrow"></i>
@@ -85,10 +91,21 @@
           </ul>
         </li>
         <li>
+          <a href="admitions.php">
+            <div class="item-content">
+              <div class="item-media">
+                <i class="fa fa-2x fa-bed"></i>
+              </div>
+              <div class="item-inner"> Patients Admited </span>
+              </div>
+            </div>
+          </a>
+        </li>
+        <li>
           <a href="appointment-history.php">
             <div class="item-content">
               <div class="item-media">
-                <i class="ti-file"></i>
+                <i class="fa fa-2x fa-history"></i>
               </div>
               <div class="item-inner">
                 <span class="title"> Appointment History </span>
@@ -100,7 +117,7 @@
           <a href="javascript:void(0)">
             <div class="item-content">
               <div class="item-media">
-                <i class="ti-files"></i>
+                <i class="fa fa-2x fa-list-alt"></i>
               </div>
               <div class="item-inner">
                 <span class="title"> Conatctus Queries </span><i class="icon-arrow"></i>
@@ -124,7 +141,7 @@
           <a href="doctor-logs.php">
             <div class="item-content">
               <div class="item-media">
-                <i class="ti-list"></i>
+                <i class="fa fa-2x fa-chain-broken"></i>
               </div>
               <div class="item-inner">
                 <span class="title"> Doctor Session Logs </span>
@@ -136,7 +153,7 @@
           <a href="user-logs.php">
             <div class="item-content">
               <div class="item-media">
-                <i class="ti-list"></i>
+                <i class="fa fa-2x fa-chain-broken"></i>
               </div>
               <div class="item-inner">
                 <span class="title"> User Session Logs </span>
@@ -148,7 +165,7 @@
           <a href="javascript:void(0)">
             <div class="item-content">
               <div class="item-media">
-                <i class="ti-files"></i>
+                <i class="fa fa-2x fa-file-archive-o"></i>
               </div>
               <div class="item-inner">
                 <span class="title"> Reports </span><i class="icon-arrow"></i>
@@ -166,7 +183,7 @@
           <a href="patient-search.php">
             <div class="item-content">
               <div class="item-media">
-                <i class="ti-search"></i>
+                <i class="fa fa-2x fa-search"></i>
               </div>
               <div class="item-inner">
                 <span class="title"> Patient Search </span>
