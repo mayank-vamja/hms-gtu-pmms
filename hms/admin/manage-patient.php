@@ -1,4 +1,10 @@
-<?php include('include/header.php');?>
+<?php include('include/header.php'); ?>
+<?php 
+function getRandomColor() {
+  $bgColors = ['#FF5479', '#CC54FF', '#54A1FF', '#F9C03C', '#13BB8D', '#5C59E3', '#75BA30'];
+  return $bgColors[rand(0,6)];
+}
+?>
 <div class="main-content">
   <div class="wrap-content container" id="container">
     <!-- start: PAGE TITLE -->
@@ -25,11 +31,7 @@
           <table class="table table-hover" id="sample-table-1">
             <thead>
               <tr>
-                <th class="center">#</th>
-                <th>Patient Name</th>
-                <th>Patient Contact Number</th>
-                <th>Patient Gender </th>
-                <th>Creation Date </th>
+                <th>Patient</th>
                 <th>Updation Date </th>
                 <th>Action</th>
               </tr>
@@ -37,28 +39,38 @@
             <tbody>
               <?php
 
-$sql=mysqli_query($con,"select * from tblpatient");
-$cnt=1;
-while($row=mysqli_fetch_array($sql))
-{
-?>
-              <tr>
-                <td class="center"><?php echo $cnt;?>.</td>
-                <td class="hidden-xs"><?php echo $row['PatientName'];?></td>
-                <td><?php echo $row['PatientContno'];?></td>
-                <td><?php echo $row['PatientGender'];?></td>
-                <td><?php echo $row['CreationDate'];?></td>
-                <td><?php echo $row['UpdationDate'];?>
-                </td>
-                <td>
+              $sql = mysqli_query($con, "select * from tblpatient");
+              $cnt = 1;
+              while ($row = mysqli_fetch_array($sql)) {
+              ?>
+                <tr>
+                  <td>
+                    <div class="media">
+                      <div class="media-left">
+                        <div src="img_avatar1.png" class="media-object media-initial" style="background-color: <?php echo getRandomColor() ?>">
+                          <?php echo substr($row['PatientName'], 0, 1); ?>
+                        </div>
+                      </div>
+                      <div class="media-body" style="width: fit-content;">
+                        <h4 class="media-heading"><?php echo $row['PatientName']; ?>
+                          <small><i>created on <?php echo $row['CreationDate']; ?></i></small>
+                        </h4>
+                        <p><i class="fa fa-mars"></i> <?php echo $row['PatientGender']; ?>
+                          <br /><span class="text-success"><i class="fa fa-phone"></i> <?php echo $row['PatientContno']; ?></span></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td><?php echo $row['UpdationDate']; ?>
+                  </td>
+                  <td align="center">
 
-                  <a href="view-patient.php?viewid=<?php echo $row['ID'];?>"><i class="fa fa-eye"></i></a>
+                    <a href="view-patient.php?viewid=<?php echo $row['ID']; ?>"><i class="fa fa-eye"></i></a>
 
-                </td>
-              </tr>
-              <?php 
-$cnt=$cnt+1;
- }?></tbody>
+                  </td>
+                </tr>
+              <?php
+                $cnt = $cnt + 1;
+              } ?></tbody>
           </table>
         </div>
       </div>
@@ -66,5 +78,5 @@ $cnt=$cnt+1;
   </div>
 </div>
 <!-- start: FOOTER -->
-<?php include('include/footer.php');?>
+<?php include('include/footer.php'); ?>
 <!-- end: FOOTER -->
