@@ -1,4 +1,6 @@
+<?php include('include/header.php'); ?>
 <?php
+
 if (isset($_POST['submit'])) {
   $vid = $_GET['viewid'];
   $bp = $_POST['bp'];
@@ -6,16 +8,229 @@ if (isset($_POST['submit'])) {
   $weight = $_POST['weight'];
   $temp = $_POST['temp'];
   $pres = $_POST['pres'];
-  $query .= mysqli_query($con, "insert into tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$pres')");
+  $disease = $_POST['disease'];
+  $otherData = null;
+  if ($disease) {
+    switch ($disease) {
+      case "DIABETES":
+        if ($_POST['diabetes']) {
+          $temp = array("diabetes" => $_POST['diabetes']);
+          $otherData = json_encode($temp);
+        }
+        break;
+    }
+  }
+
+  $query = mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,OtherData,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$otherData','$pres')");
   if ($query) {
-    // echo '<script>alert("Medicle history has been added.")</script>';
+    echo '<script>alert("Medicle history has been added.")</script>';
     echo "<script>window.location.href ='manage-patient.php'</script>";
   } else {
     echo '<script>alert("Something Went Wrong. Please try again")</script>';
   }
 }
+
+function getInputTableForDisease($data)
+{
+  switch ($data) {
+    case "DIABETES":
+      return "<tr><th>Diabetes Count :</th><td><input type='hidden' name='disease' value='DIABETES'><input name='diabetes' placeholder='Diabetes' class='form-control wd-450'></td></tr>";
+    default:
+      return "<tr><th>'$data' Count :</th><td><input type='hidden' name='disease' value='$data'><input name='$data' placeholder='$data' class='form-control wd-450'></td></tr>";
+  }
+}
+
+function getOtherData($type, $data)
+{
+  switch ($type) {
+    case "DIABETES":
+      if ($data) {
+        $d_data = json_decode($data);
+        if ($d_data->diabetes) {
+          return $d_data->diabetes;
+        } else {
+          return "- -";
+        }
+      }
+      return "- -";
+  }
+}
+
 ?>
-<?php include('include/header.php'); ?>
+<script>
+  var diseasesData = null;
+  var chartData = [];
+
+  function drawChart() {
+    let data = google.visualization.arrayToDataTable(chartData);
+
+    let options = {
+      title: 'Diabetes Analysis',
+      hAxis: {
+        title: "Date",
+        baseline: 1,
+        baselineColor: '#7033ff',
+        legend: {
+          maxLines: 1
+        },
+        maxTextLines: 0,
+        showTextEvery: 4
+      },
+      vAxis: {
+        minValue: 0,
+        gridlines: {
+          count: 0,
+        },
+        baselineColor: '#7033ff',
+      },
+      legend: {
+        maxLines: 1,
+        alignment: 'center',
+        position: 'top'
+      },
+      tooltip: {
+        isHtml: true
+      },
+      colors: ['#7033ff', '#A962FF'],
+      pointsVisible: true,
+      animation: {
+        duration: 500,
+        easing: 'ease-in',
+        startup: true
+      },
+      annotations: {
+        boxStyle: {
+          stroke: '#322E46',
+          strokeWidth: 1,
+          rx: 10,
+          ry: 10,
+          gradient: {
+            color1: '#00C987',
+            color2: '#00E4DF',
+            x1: '0%',
+            y1: '0%',
+            x2: '100%',
+            y2: '100%',
+            useObjectBoundingBoxUnits: true
+          }
+        }
+      }
+    };
+
+    let chart = new google.visualization.AreaChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+
+  function createChart(array) {
+
+    chartData = array.map((item) => {
+      let date = new Date(item.date);
+      let MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      let strDate = `${date.getDate()} ${MONTHS[date.getMonth()]}, ${date.getFullYear()}`;
+      return [strDate, parseInt(item.diabetes)]
+    });
+    chartData.unshift(['Date', 'Diabetes']);
+    google.charts.load('current', {
+      'packages': ['corechart']
+    });
+
+    google.charts.setOnLoadCallback(drawChart);
+  }
+
+  var selectedDates = [];
+  $(window).load(() => {
+    $('#datepickerBox').datepicker({
+      multidate: 2,
+      format: 'yyyy-mm-dd',
+      maxViewMode: 0,
+    });
+    $('#datepickerBox').on('changeDate', function() {
+      let from = $('#fromDate').val();
+      let to = $('#toDate').val();
+      let result = $('#datepickerBox').datepicker('getFormattedDate');
+      if (!result || result.trim() == '') {
+        $('#fromDate').val('');
+        $('#toDate').val('');
+      } else {
+        selectedDates = $('#datepickerBox').datepicker('getFormattedDate').split(',');
+        selectedDates.sort((a, b) => new Date(a) - new Date(b));
+
+        selectedDates.length ? $('#fromDate').val(selectedDates[0]) : $('#fromDate').val('');
+        selectedDates.length == 2 ? $('#toDate').val(selectedDates[1]) : $('#toDate').val('');
+      }
+
+      let temp1 = $('#fromDate').val() == '' ? 'Not Selected' : $('#fromDate').val();
+      let temp2 = $('#toDate').val() == '' ? 'Not Selected' : $('#toDate').val();
+      $('#datesText').html(`From : ${temp1} - To : ${temp2}`);
+
+    });
+  });
+
+  function selectDepartment(dept) {
+    $("#beds").hide(0);
+    $.ajax({
+      type: "GET",
+      url: './department-details.php?id=' + dept,
+      success: function(data) {
+        let response = JSON.parse(data);
+        let booked = response.booked ? response.booked.split(' ') : [];
+        let bedsHtml = '';
+        for (let i = 1; i <= response.maxPatients; i++) {
+          if (!booked.includes('' + i))
+            bedsHtml = bedsHtml + '<button type="button" class="btn btn-primary" onclick="selectBed(' + i + ')">' + i + '</button>';
+          else
+            bedsHtml = bedsHtml + '<button disabled type="button" class="btn btn-danger" onclick="selectBed(' + i + ')">' + i + '</button>';
+        }
+
+        $("#beds").html(bedsHtml);
+        $("#beds").show(200);
+      }
+    });
+  }
+
+  function selectBed(bed) {
+    $("#currentBed").text(bed);
+    $('#bedNo').val(bed);
+    $('#beds').popover('hide');
+  }
+
+  function openDateSelector() {
+    $('#admit-group-wrapper').hide('slow');
+    $('#datepickerBox-wrapper').show('slow');
+  }
+
+  function closeDateSelector() {
+    $('#admit-group-wrapper').show('slow');
+    $('#datepickerBox-wrapper').hide('slow');
+  }
+
+
+  function admitPatient(e, formId) {
+    e.preventDefault();
+    if (!$('#bedNo').val() || $('#bedNo').val() == '') {
+      $('#beds').popover('show');
+      return;
+    } else if (selectedDates.length != 2) {
+
+    }
+    let form = $(`#${formId}`);
+    let url = form.attr('action');
+    $.ajax({
+      type: "POST",
+      url: url,
+      data: form.serialize(),
+      success: function(data) {
+        $('#myModal').modal('hide');
+        console.log(data);
+        if (data != "success") {
+          alert("Unable to admit patient");
+        } else {
+          window.location.reload();
+        }
+      }
+    });
+  }
+</script>
 
 <style>
   #datepickerBox-wrapper {
@@ -145,9 +360,9 @@ if (isset($_POST['submit'])) {
                 <div class="panel panel-white">
                   <div class="panel-body">
                     <h4>Patient admited details:</h4>
-                    <p>Location   : <?php echo '(' . $row['type'] . ') ' . $row['name'] ?></p>
+                    <p>Location : <?php echo '(' . $row['type'] . ') ' . $row['name'] ?></p>
                     <p>Admited On : <?php echo $row['fromDate'] ?></p>
-                    <p>Last date  : <?php echo $row['toDate'] ?></p>
+                    <p>Last date : <?php echo $row['toDate'] ?></p>
                     <p></p>
                   </div>
                 </div>
@@ -252,100 +467,5 @@ if (isset($_POST['submit'])) {
   </div>
 </div>
 
-<script>
-  var selectedDates = [];
-  $(window).load(() => {
-    $('#datepickerBox').datepicker({
-      multidate: 2,
-      format: 'yyyy-mm-dd',
-      maxViewMode: 0,
-    });
-    $('#datepickerBox').on('changeDate', function() {
-      let from = $('#fromDate').val();
-      let to = $('#toDate').val();
-      let result = $('#datepickerBox').datepicker('getFormattedDate');
-      if (!result || result.trim() == '') {
-        $('#fromDate').val('');
-        $('#toDate').val('');
-      } else {
-        selectedDates = $('#datepickerBox').datepicker('getFormattedDate').split(',');
-        selectedDates.sort((a, b) => new Date(a) - new Date(b));
-
-        selectedDates.length ? $('#fromDate').val(selectedDates[0]) : $('#fromDate').val('');
-        selectedDates.length == 2 ? $('#toDate').val(selectedDates[1]) : $('#toDate').val('');
-      }
-
-      let temp1 = $('#fromDate').val() == '' ? 'Not Selected' : $('#fromDate').val();
-      let temp2 = $('#toDate').val() == '' ? 'Not Selected' : $('#toDate').val();
-      $('#datesText').html(`From : ${temp1} - To : ${temp2}`);
-
-    });
-  });
-
-  function selectDepartment(dept) {
-    $("#beds").hide(0);
-    $.ajax({
-      type: "GET",
-      url: './department-details.php?id=' + dept,
-      success: function(data) {
-        let response = JSON.parse(data);
-        let booked = response.booked ? response.booked.split(' ') : [];
-        let bedsHtml = '';
-        for (let i = 1; i <= response.maxPatients; i++) {
-          if (!booked.includes('' + i))
-            bedsHtml = bedsHtml + '<button type="button" class="btn btn-primary" onclick="selectBed(' + i + ')">' + i + '</button>';
-          else
-            bedsHtml = bedsHtml + '<button disabled type="button" class="btn btn-danger" onclick="selectBed(' + i + ')">' + i + '</button>';
-        }
-
-        $("#beds").html(bedsHtml);
-        $("#beds").show(200);
-      }
-    });
-  }
-
-  function selectBed(bed) {
-    $("#currentBed").text(bed);
-    $('#bedNo').val(bed);
-    $('#beds').popover('hide');
-  }
-
-  function openDateSelector() {
-    $('#admit-group-wrapper').hide('slow');
-    $('#datepickerBox-wrapper').show('slow');
-  }
-
-  function closeDateSelector() {
-    $('#admit-group-wrapper').show('slow');
-    $('#datepickerBox-wrapper').hide('slow');
-  }
-
-
-  function admitPatient(e, formId) {
-    e.preventDefault();
-    if (!$('#bedNo').val() || $('#bedNo').val() == '') {
-      $('#beds').popover('show');
-      return;
-    } else if (selectedDates.length != 2) {
-
-    }
-    let form = $(`#${formId}`);
-    let url = form.attr('action');
-    $.ajax({
-      type: "POST",
-      url: url,
-      data: form.serialize(),
-      success: function(data) {
-        $('#myModal').modal('hide');
-        console.log(data);
-        if (data != "success") {
-          alert("Unable to admit patient");
-        } else {
-          window.location.reload();
-        }
-      }
-    });
-  }
-</script>
 
 <?php include('include/footer.php'); ?>
