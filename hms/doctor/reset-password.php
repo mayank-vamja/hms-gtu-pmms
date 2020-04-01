@@ -62,10 +62,6 @@ echo "<script>window.location.href ='index.php'</script>";
 
       <div class="box-login">
         <form class="form-login" name="passwordreset" method="post" onSubmit="return valid();">
-          <fieldset>
-            <legend>
-              Patient Reset Password
-            </legend>
             <p>
               Please set your new password.<br />
               <span style="color:red;"><?php echo $_SESSION['errmsg']; ?><?php echo $_SESSION['errmsg']="";?></span>
@@ -99,7 +95,6 @@ echo "<script>window.location.href ='index.php'</script>";
                 Log-in
               </a>
             </div>
-          </fieldset>
         </form>
 
         <div class="copyright">

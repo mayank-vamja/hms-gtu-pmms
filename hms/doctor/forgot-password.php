@@ -39,9 +39,9 @@ echo "<script>window.location.href ='forgot-password.php'</script>";
   <link href="vendor/animate.css/animate.min.css" rel="stylesheet" media="screen">
   <link href="vendor/perfect-scrollbar/perfect-scrollbar.min.css" rel="stylesheet" media="screen">
   <link href="vendor/switchery/switchery.min.css" rel="stylesheet" media="screen">
-  <link rel="stylesheet" href="assets/css/styles.css">
-  <link rel="stylesheet" href="assets/css/plugins.css">
-  <link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+  <link rel="stylesheet" href="../assets/css/styles.css">
+  <link rel="stylesheet" href="../assets/css/plugins.css">
+  <link rel="stylesheet" href="../assets/css/themes/theme-1.css" id="skin_color" />
 </head>
 
 <body class="login">
@@ -55,10 +55,6 @@ echo "<script>window.location.href ='forgot-password.php'</script>";
 
       <div class="box-login">
         <form class="form-login" method="post">
-          <fieldset>
-            <legend>
-              Doctor Password Recovery
-            </legend>
             <p>
               Please enter your Contact number and Email to recover your password.<br />
 
@@ -89,7 +85,6 @@ echo "<script>window.location.href ='forgot-password.php'</script>";
                 Log-in
               </a>
             </div>
-          </fieldset>
         </form>
 
         <div class="copyright">

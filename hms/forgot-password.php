@@ -49,10 +49,6 @@ echo "<script>window.location.href ='forgot-password.php'</script>";
 
 				<div class="box-login">
 					<form class="form-login" method="post">
-						<fieldset>
-							<legend>
-								Patient Password Recovery
-							</legend>
 							<p>
 								Please enter your Email and password to recover your password.<br />
 					
@@ -83,7 +79,6 @@ echo "<script>window.location.href ='forgot-password.php'</script>";
 									Log-in
 								</a>
 							</div>
-						</fieldset>
 					</form>
 
 					<div class="copyright">

@@ -6,6 +6,9 @@ if ($query) {
   $notificationCount = $row[0];
 }
 ?>
+<style>
+  
+</style>
 
 <header class="navbar navbar-default navbar-static-top">
 
@@ -14,7 +17,8 @@ if ($query) {
       <i class="ti-align-justify"></i>
     </a>
     <a class="navbar-brand" href="#">
-      <h2 style="padding-top:20% ">HMS</h2>
+      <h2 style="padding-top:20% ">H M <span style="color:#20d34a;">S</span></h2>
+      <h2 class="logo_box">+</h2>
     </a>
     <a href="#" class="sidebar-toggler pull-right visible-md visible-lg" data-toggle-class="app-sidebar-closed" data-toggle-target="#app">
       <i class="ti-align-justify"></i>
@@ -82,7 +86,7 @@ if ($query) {
 
 <div id="notifications-popup" class="notifications-popup" style="">
   <div class="notification-header">
-    <span onclick="hideNotifications()" style="color:white"><i class="fa fa-close fa-3x"></i></span>
+    <span onclick="hideNotifications()" style="color:white"><i class="fa fa-close close-icon fa-2x"></i></span>
     <h2 style="display: inline;" class="text-white">
       Notifications
       <?php if ($notificationCount > 0) echo "<span class='badge badge-pill badge-danger'>" . $notificationCount . "</span>" ?>

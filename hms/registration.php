@@ -61,10 +61,6 @@ return true;
 				<!-- start: REGISTER BOX -->
 				<div class="box-register">
 					<form name="registration" id="registration"  method="post" onSubmit="return valid();">
-						<fieldset>
-							<legend>
-								Sign Up
-							</legend>
 							<p>
 								Enter your personal details below:
 							</p>
@@ -130,7 +126,6 @@ return true;
 									Submit <i class="fa fa-arrow-circle-right"></i>
 								</button>
 							</div>
-						</fieldset>
 					</form>
 
 					<div class="copyright">

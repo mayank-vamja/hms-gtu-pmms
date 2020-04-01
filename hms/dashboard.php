@@ -26,6 +26,7 @@ check_login();
 	<link rel="stylesheet" href="assets/css/styles.css">
 	<link rel="stylesheet" href="assets/css/plugins.css">
 	<link rel="stylesheet" href="assets/css/themes/theme-1.css" id="skin_color" />
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
 
 </head>
@@ -63,36 +64,39 @@ check_login();
 							<div class="col-sm-6 col-md-4">
 								<a href="edit-profile.php">
 									<div class="panel panel-white text-center fixed-height-card">
+										<div class="card-icon">
+											<i class="fa fa-user-circle-o" aria-hidden="true"></i>
+										</div>
 										<div class="panel-body h-card">
 											<h2 class="StepTitle">My Profile</h2>
 										</div>
-										<div class="panel-footer bg-light-grey">
-											<p>View and edit your profile.</p>
-										</div>
+										<p>View and Edit your Profile </p>
 									</div>
 								</a>
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<a href="appointment-history.php">
 									<div class="panel panel-white text-center fixed-height-card">
+										<div class="card-icon">
+											<i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+										</div>
 										<div class="panel-body h-card">
 											<h2 class="StepTitle">My Appointments</h2>
 										</div>
-										<div class="panel-footer bg-light-grey">
-											<p>View your Appointment History.</p>
-										</div>
+										<p>View your Appointment History.</p>
 									</div>
 								</a>
 							</div>
 							<div class="col-sm-6 col-md-4">
 								<a href="book-appointment.php">
 									<div class="panel panel-white text-center fixed-height-card">
+										<div class="card-icon">
+											<i class="fa fa-address-book" aria-hidden="true"></i>
+										</div>
 										<div class="panel-body h-card">
 											<h2 class="StepTitle"> Book Appointment</h2>
 										</div>
-										<div class="panel-footer bg-light-grey">
-											<p>Book a new Appointment.</p>
-										</div>
+										<p>Book a new Appointment.</p>
 									</div>
 							</div>
 							</a>

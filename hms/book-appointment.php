@@ -153,9 +153,9 @@ $query=mysqli_query($con,"insert into appointment(doctorSpecialization,doctorId,
             <div class="row">
               <div class="col-md-12">
 
-                <div class="row margin-top-30">
+                <div class="row margin-top-30 my-d-flex">
                   <div class="col-lg-8 col-md-12">
-                    <div class="panel panel-white">
+                    <div class="panel panel-light">
                       <div class="panel-heading">
                         <h5 class="panel-title">Book Appointment</h5>
                       </div>

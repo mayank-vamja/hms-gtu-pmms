@@ -51,10 +51,6 @@ if($query)
       <!-- start: REGISTER BOX -->
       <div class="box-register">
         <form name="registration" id="registration" method="post">
-          <fieldset>
-            <legend>
-              Sign Up
-            </legend>
             <p>
               Enter your personal details below:
             </p>
@@ -122,7 +118,6 @@ if($query)
                 Submit <i class="fa fa-arrow-circle-right"></i>
               </button>
             </div>
-          </fieldset>
         </form>
 
         <div class="copyright">

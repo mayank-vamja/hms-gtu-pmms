@@ -63,10 +63,6 @@ exit();
 
 				<div class="box-login">
 					<form class="form-login" method="post">
-						<fieldset>
-							<legend>
-								Sign in to your account
-							</legend>
 							<p>
 								Please enter your name and password to log in.<br />
 								<span style="color:red;"><?php echo $_SESSION['errmsg']; ?><?php echo $_SESSION['errmsg']="";?></span>
@@ -96,7 +92,6 @@ exit();
 									Create an account
 								</a>
 							</div>
-						</fieldset>
 					</form>
 
 					<div class="copyright">
