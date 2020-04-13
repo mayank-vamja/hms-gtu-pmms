@@ -1,7 +1,7 @@
 <?php include('include/header.php'); ?>
 <?php
 
-if (isset($_POST['submit'])) {
+if (isset($_POST['submit_mh'])) {
   $vid = $_GET['viewid'];
   $bp = $_POST['bp'];
   $bs = $_POST['bs'];
@@ -21,9 +21,23 @@ if (isset($_POST['submit'])) {
     }
   }
 
-  $query = mysqli_query($con, "insert   tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,OtherData,MedicalPres)value('$vid','$bp','$bs','$weight','$temp','$otherData','$pres')");
+  $query = mysqli_query($con, "insert into tblmedicalhistory(PatientID,BloodPressure,BloodSugar,Weight,Temperature,OtherData,MedicalPres) values('$vid','$bp','$bs','$weight','$temp','$otherData','$pres')");
   if ($query) {
-    echo '<script>alert("Medicle history has been added.")</script>';
+    // echo '<script>alert("Medicle history has been added.")</script>';
+    echo "<script>window.location.href ='manage-patient.php'</script>";
+  } else {
+    echo '<script>alert("Something Went Wrong. Please try again")</script>';
+  }
+} else if (isset($_POST['submit_rr'])) {
+  $vid = $_GET['viewid'];
+  $type = $_POST['type'];
+  $description = $_POST['description'];
+  $priority = $_POST['priority'];
+  $requestedBy = $_SESSION['id'];
+
+  $query = mysqli_query($con, "insert into tblreports(PatientId,ReportType,ReportDescription,Priority,RequestedBy) values('$vid','$type','$description','$priority','$requestedBy')");
+  if ($query) {
+    // echo '<script>alert("Medicle history has been added.")</script>';
     echo "<script>window.location.href ='manage-patient.php'</script>";
   } else {
     echo '<script>alert("Something Went Wrong. Please try again")</script>';
@@ -257,8 +271,48 @@ function getOtherData($type, $data)
             </table>
 
             <p align="center">
-              <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">Add
-                Medical History
+              <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#myModal">
+                Add Medical History
+              </button>
+            </p>
+
+            <?php 
+              $vid = $_GET['viewid'];
+              $report_query = mysqli_query($con, "select * from tblreports  where PatientId='$vid'");
+            ?>
+            <table id="datatable" class="table table-bordered dt-responsive nowrap" style="border-collapse: collapse; border-spacing: 0; width: 100%;">
+              <tr align="center">
+                <th colspan="6">Reports History</th>
+              </tr>
+              <tr>
+                <th>#</th>
+                <th>Report Typr</th>
+                <th>Description</th>
+                <th>Report</th>
+                <th>Report Date</th>
+                <th>Generated on</th>
+              </tr>
+              <?php
+              $cnt = 1;
+              while ($row = mysqli_fetch_array($report_query)) {
+              ?>
+                <tr>
+                  <td><?php echo $cnt; ?></td>
+                  <td><?php echo $row['ReportType']; ?></td>
+                  <td><?php echo $row['ReportDescription']; ?></td>
+                  <td><?php if($row['ReportData']) echo $row['ReportData']; else echo "- -"; ?></td>
+                  <td><?php echo $row['RequestDate']; ?></td>
+                  <td><?php if($row['UploadDate']) echo $row['UploadDate']; else echo "- -"; ?></td>
+                </tr>
+              <?php
+                $cnt = $cnt + 1;
+              }
+              ?>
+            </table>
+
+            <p align="center">
+              <button class="btn btn-primary waves-effect waves-light w-lg" data-toggle="modal" data-target="#addReportRequestModal">
+                Request Report
               </button>
             </p>
 
@@ -267,7 +321,7 @@ function getOtherData($type, $data)
 
             <!-- MODAL FOR FORM Add MedicalHistory -->
             <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-              <div class="modal-dialog" role="document">
+              <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add Medical History</h5>
@@ -278,7 +332,7 @@ function getOtherData($type, $data)
                   <div class="modal-body">
                     <table class="table table-bordered table-hover data-tables">
 
-                      <form method="post" name="submit">
+                      <form method="post" name="submit_mh">
 
                         <tr>
                           <th>Blood Pressure :</th>
@@ -325,8 +379,7 @@ function getOtherData($type, $data)
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
-
+                    <button type="submit" name="submit_mh" class="btn btn-primary">Submit</button>
                     </form>
                   </div>
                 </div>
@@ -337,6 +390,44 @@ function getOtherData($type, $data)
     </div>
   </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="addReportRequestModal" role="dialog">
+  <div class="modal-dialog">
+    <!-- Modal content-->
+    <div class="modal-content bg-white">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="text-primary text-center"> Add Report Request </h3>
+      </div>
+      <div class="modal-body">
+        <form method="POST" name="submit_rr">
+          <div class="form-group">
+            <label for="type">Report/Test type</label>
+            <input type="text" name="type" class="form-control" required="true">
+          </div>
+          <div class="form-group">
+            <label for="description">Report/Test description</label>
+            <textarea row="4" name="description" class="form-control" required="true"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="priority">Priority</label>
+            <select name="priority" class="form-control" value="0">
+              <option value="0" selected>General</option>
+              <option value="1">High</option>
+              <option value="2">Extremely High</option>
+            </select>
+          </div>
+          <p align="center">
+            <button type="submit" name="submit_rr" class="btn btn-lg btn-primary">Submit</button>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 <style>
   div.google-visualization-tooltip {
