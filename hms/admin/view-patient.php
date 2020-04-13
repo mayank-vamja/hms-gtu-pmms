@@ -69,7 +69,7 @@ function getOtherData($type, $data)
       hAxis: {
         title: "Date",
         baseline: 1,
-        baselineColor: '#7033ff',
+        baselineColor: '#283290',
         legend: {
           maxLines: 1
         },
@@ -81,7 +81,7 @@ function getOtherData($type, $data)
         gridlines: {
           count: 0,
         },
-        baselineColor: '#7033ff',
+        baselineColor: '#283290',
       },
       legend: {
         maxLines: 1,
@@ -91,7 +91,7 @@ function getOtherData($type, $data)
       tooltip: {
         isHtml: true
       },
-      colors: ['#7033ff', '#A962FF'],
+      colors: ['#283290', '#A962FF'],
       pointsVisible: true,
       animation: {
         duration: 500,
@@ -237,7 +237,7 @@ function getOtherData($type, $data)
     height: 450px;
     overflow: hidden;
     margin: auto;
-    border: 1px solid #7033ff;
+    border: 1px solid #283290;
     border-radius: 8px;
   }
 
@@ -441,7 +441,7 @@ function getOtherData($type, $data)
               <div id="currentBed" style="float: right;" class="custom-badge">N/A</div>
               <input id="bedNo" required type="hidden" name="bedNo">
               <p>Select from Available beds
-                <a tabindex="0" data-html="true" data-toggle="popover" data-trigger="hover" data-content="<svg height='10' width='10'><circle cx='5' cy='5' r='5' fill='#7033ff' /></svg> Available<br /><svg height='10' width='10'><circle cx='5' cy='5' r='5' fill='#f69487' /></svg> Occupied">
+                <a tabindex="0" data-html="true" data-toggle="popover" data-trigger="hover" data-content="<svg height='10' width='10'><circle cx='5' cy='5' r='5' fill='#283290' /></svg> Available<br /><svg height='10' width='10'><circle cx='5' cy='5' r='5' fill='#f69487' /></svg> Occupied">
                   <i class="fa fa-info-circle"></i>
                 </a>
               </p>

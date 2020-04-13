@@ -33,7 +33,7 @@
                 echo '<h4 class="badge" style="font-size:24px">' . $num_rows . '</h4>';
                 ?>
               </div>
-              <div class="panel-footer bg-light-grey">
+              <div class="panel-footer ">
                 <p>Manage User of the system.</p>
               </div>
             </div>
@@ -48,7 +48,7 @@
                   echo '<h4 class="badge" style="font-size:24px">' . $num_rows1 . '</h4>';
                   ?>
               </div>
-              <div class="panel-footer bg-light-grey">
+              <div class="panel-footer ">
                 <p>View and manage doctor profiles and specializations.</p>
               </div>
             </div>
@@ -64,7 +64,7 @@
                 echo '<h4 class="badge" style="font-size:24px">' . $num_rows2 . '</h4>';
                 ?>
               </div>
-              <div class="panel-footer bg-light-grey">
+              <div class="panel-footer ">
                 <p>View appointment history.</p>
               </div>
             </div>
@@ -81,7 +81,7 @@
                 echo '<h4 class="badge" style="font-size:24px">' . $num_rows . '</h4>';
                 ?>
               </div>
-              <div class="panel-footer bg-light-grey">
+              <div class="panel-footer ">
                 <p>View, manage and edit patient profiles.</p>
               </div>
             </div>
@@ -99,7 +99,7 @@
                 echo '<h4 class="badge" style="font-size:24px">' . $num_rows22 . '</h4>';
                 ?>
               </div>
-              <div class="panel-footer bg-light-grey">
+              <div class="panel-footer ">
                 <p>Read and respond to queries.</p>
               </div>
             </div>

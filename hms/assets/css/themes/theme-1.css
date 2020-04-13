@@ -2,13 +2,13 @@
 /*  Theme 1
 /* ---------------------------------------------------------------------- */
 ::-moz-selection {
-  background: #6b2c91;
+  background: #283290;
   text-shadow: none;
   color: #ffffff;
 }
 
 ::selection {
-  background: #6b2c91;
+  background: #283290;
   text-shadow: none;
   color: #ffffff;
 }
@@ -24,7 +24,6 @@ body {
 }
 
 header .navbar-header {
-  background: #322e46 !important;
   border-right-color: #c8c7cc !important;
   border-bottom-color: #c8c7cc !important;
 }
@@ -52,11 +51,11 @@ header .navbar-collapse .navbar-right > li > a i {
 header .navbar-collapse .navbar-right > li > a:hover,
 header .navbar-collapse .navbar-right > li > a:focus,
 header .navbar-collapse .navbar-right > li > a:active {
-  background: #283290 !important;
+  background: #78a2d0 !important;
   color: #fff;
 }
 header .navbar-collapse .navbar-right > li.open > a {
-  background: #283290 !important;
+  background: #78a2d0 !important;
 }
 header .navbar-collapse .navbar-right .dot-badge {
   border-color: #ffffff;
@@ -64,7 +63,6 @@ header .navbar-collapse .navbar-right .dot-badge {
 
 @media (max-width: 991px) {
   header .navbar-collapse {
-    background: #322e46 !important;
     box-shadow: none;
   }
   header .navbar-collapse .navbar-right > li.open {
@@ -77,9 +75,6 @@ header .navbar-collapse .navbar-right .dot-badge {
   } */
   header .navbar-collapse .navbar-right > li > a {
     color: #333;
-  }
-  header .navbar-collapse .navbar-right > li > a i {
-    color: #322e46 !important;
   }
   header .navbar-collapse .navbar-right > li > a:hover {
     background: #ebebeb !important;
@@ -97,22 +92,12 @@ header .navbar-collapse .navbar-right .dot-badge {
     border-bottom: 1px solid #c8c7cc !important;
   }
 }
-@media (max-width: 991px) {
-  header .navbar-collapse .navbar-right .dot-badge {
-    border-color: #322e46;
-  }
-}
 @media (max-width: 767px) {
-  header .navbar-collapse {
-    background: #322e46 !important;
-  }
+
   header .navbar-collapse .close-handle {
     background: #ffffff;
   }
   header .navbar-collapse .close-handle .arrow-left,
-  header .navbar-collapse .close-handle .arrow-right {
-    background-color: #322e46;
-  }
   header .navbar-collapse .navbar-right .current-user a i {
     color: #ffffff !important;
     background: rgba(0, 122, 255, 0.3);
@@ -273,7 +258,7 @@ header .dropdown-off-sidebar {
     border-left: 12px solid #c8c7cc;
   }
   .app-sidebar-closed .app-aside > .item-inner.active:after {
-    border-left: 12px solid #6b2c91 !important;
+    border-left: 12px solid #283290 !important;
   }
   .app-sidebar-closed .app-aside > .item-inner:before {
     border-left: 12px solid #c8c7cc;
@@ -364,7 +349,7 @@ header .dropdown-off-sidebar {
   border-color: #c8c7cc !important;
 }
 #off-sidebar .sidebar-back {
-  color: #6b2c91;
+  color: #283290;
 }
 #off-sidebar .tab-content {
   background: #ffffff !important;
@@ -382,7 +367,7 @@ header .dropdown-off-sidebar {
 #off-sidebar .nav-tabs.nav-justified > li.active > a,
 #off-sidebar .nav-tabs.nav-justified > li.active > a:hover,
 #off-sidebar .nav-tabs.nav-justified > li.active > a:focus {
-  color: #6b2c91;
+  color: #283290;
   background: #ffffff;
   border-bottom-color: #ffffff;
 }
@@ -417,7 +402,7 @@ header .dropdown-off-sidebar {
   border-color: #c8c7cc;
 }
 #off-sidebar .message-bar .link {
-  color: #6b2c91;
+  color: #283290;
 }
 #off-sidebar .message-bar a.icon-only {
   color: #333;

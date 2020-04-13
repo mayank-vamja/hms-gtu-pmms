@@ -29,7 +29,7 @@
                 class="fa fa-smile-o fa-stack-1x fa-inverse"></i> </span> -->
                 <span class="StepTitle">My Profile</span>
               </div>
-              <div class="panel-footer bg-light-grey">
+              <div class="panel-footer ">
                 <p>View and edit your profile.</p>
               </div>
             </div>
@@ -41,7 +41,7 @@
               <div class="panel-body h-card">
                 <h2 class="StepTitle">My Appointments</h2>
               </div>
-              <div class="panel-footer bg-light-grey">
+              <div class="panel-footer ">
                 <p>View and manage your appointments which are booked and appointed to you.</p>
               </div>
             </div>

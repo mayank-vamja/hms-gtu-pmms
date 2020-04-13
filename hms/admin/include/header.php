@@ -63,7 +63,8 @@ check_login();
             <i class="ti-align-justify"></i>
           </a>
           <a class="navbar-brand" href="#">
-            <h2 style="padding-top:20%; color:#fff ">HMS</h2>
+            <h2 style="padding-top:20% ">H M <span style="color:#20d34a;">S</span></h2>
+            <h2 class="logo_box">+</h2>
           </a>
           <a href="#" class="sidebar-toggler pull-right visible-md visible-lg" data-toggle-class="app-sidebar-closed" data-toggle-target="#app">
             <i class="ti-align-justify"></i>
@@ -75,8 +76,8 @@ check_login();
         </div>
 
         <div class="navbar-collapse collapse">
-          <a class="navbar-brand">
-            <h2>HMS</h2>
+          <a class="navbar-brand hidden-xs hidden-sm" href="#">
+            <h2>Hospital Management System </h2>
           </a>
           <ul class="nav navbar-right">
             <!-- start: MESSAGES DROPDOWN -->

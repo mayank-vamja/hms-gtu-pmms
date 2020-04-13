@@ -69,7 +69,7 @@ function getOtherData($type, $data)
       hAxis: {
         title: "Date",
         baseline: 1,
-        baselineColor: '#7033ff',
+        baselineColor: '#283290',
         legend: {
           maxLines: 1
         },
@@ -81,7 +81,7 @@ function getOtherData($type, $data)
         gridlines: {
           count: 0,
         },
-        baselineColor: '#7033ff',
+        baselineColor: '#283290',
       },
       legend: {
         maxLines: 1,
@@ -91,7 +91,7 @@ function getOtherData($type, $data)
       tooltip: {
         isHtml: true
       },
-      colors: ['#7033ff', '#A962FF'],
+      colors: ['#283290', '#A962FF'],
       pointsVisible: true,
       animation: {
         duration: 500,
